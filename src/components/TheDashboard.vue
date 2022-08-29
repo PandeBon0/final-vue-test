@@ -46,7 +46,8 @@
         <div class="content">
           <button 
             @click="isOpen = true" 
-            class=" mt-6 -ml-7 mr-3 col-span-1 text-left" 
+            class=" mt-6 -ml-7 mr-3 col-span-1 text-left"
+            id="textGrey" 
           >
             Crear Producto
           </button>
@@ -58,6 +59,7 @@
         </div>
       </div>
       <img 
+        id="checkPicture"
         class="bg-white-500 mt-6 ml-7 w-128 h-4 col-span-1 invisible" 
         src="@/assets/DashboardImages/Trazado1235.png"
       >
@@ -65,12 +67,11 @@
         class="bg-white-500 mt-5 ml-12 w-128 h-4  col-span-1" 
         src="@/assets/DashboardImages/Trazado1233.png"
       >
-      <h2 id="textGrey1" class=" mt-5 -ml-7 col-span-1 ">
+      <h2 class=" mt-5 -ml-7 col-span-1 text-slate-400">
         Definir logo y colores
       </h2>
-      <img 
-        id="checkPicture1" 
-        class=" bg-white-500 mt-5 ml-8 w-128 h-4 col-span-1 invisible" 
+      <img  
+        class=" bg-white-500 mt-5 ml-8 w-128 h-4 col-span-1 visible" 
         src="@/assets/DashboardImages/Trazado1235.png"
       >
       <img 
@@ -84,15 +85,13 @@
         class="bg-white-500 mt-1 ml-12 w-128 h-4  col-span-1" 
         src="@/assets/DashboardImages/Trazado1236.png"
       >
-      <h2 
-        id="textGrey2" 
-        class=" mt-1 -ml-7 col-span-1 "
+      <h2  
+        class=" mt-1 -ml-7 col-span-1 text-slate-400"
       >
         Personalizar plantilla
       </h2>
       <img 
-        id="checkPicture2" 
-        class="bg-white-500 mt-1 ml-8 w-128 h-4 col-span-1 invisible" 
+        class="bg-white-500 mt-1 ml-8 w-128 h-4 col-span-1 visible" 
         src="@/assets/DashboardImages/Trazado1235.png"
       >
       <img 
@@ -145,10 +144,8 @@ export default {
   },
   methods: {
     showProgress() {
-      document.getElementById("textGrey1").style.color = "#94a3b8";
-      document.getElementById("textGrey2").style.color = "#94a3b8";
-      document.getElementById("checkPicture1").style.visibility = "visible";
-      document.getElementById("checkPicture2").style.visibility = "visible";
+      document.getElementById("textGrey").style.color = "#94a3b8";
+      document.getElementById("checkPicture").style.visibility = "visible";
       document.getElementById("progressBar").style.width = '42%';
       this.numericProgress='(3/8)'
     },

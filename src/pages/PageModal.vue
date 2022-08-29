@@ -90,51 +90,17 @@
           <h2>Variantes</h2>
           <!--VARIANTS AND SELECTORS-->
           <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
-            <label for="talla">
-              Talla
-            </label>
-            <select 
-              id="talla" 
-              v-model="formValues.talla"
-            >
-              <option value=""> </option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-            </select>
-          </div>
-          <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
-            <label for="color">
-              Color
-            </label>
-            <select 
-              id="color" 
-              v-model="formValues.color"
-            >
-              <option value=""></option>
-              <option value="rojo">Rojo</option>
-              <option value="amarillo">Amarillo</option>
-              <option value="verde">Verde</option>
-              <option value="azul">Azul</option>
-            </select>
-          </div>
-          <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
-            <label for="sabor" class="">
-              Sabor
-            </label>
-            <select 
-              id="sabor" 
-              v-model="formValues.sabor"
-            >
-              <option value=""></option>
-              <option value="dulce">Dulce</option>
-              <option value="salado">Salado</option>
-              <option value="acido">Acido</option>
-            </select>
-          </div>
+          
+          <ClothesVariants v-if="getCategory()==='vestimenta'"/>
+          <FoodVariants v-else-if="getCategory()==='alimentos'"/>
+          <TechVariants v-else-if="getCategory()==='tecnologia'"/>
+          <DefaultVariant v-else/>
+          
+
+
+
+
+
           <!-- <div class="text-center">
             <hr>
             <router-link 
@@ -341,45 +307,59 @@
 </template>
 
 <script>
-  export default {
-    name: 'PageModal',
-    visibility: 'invisible',
-    props:{
-      open:{
-        type:Boolean,
-        required:true
-      }
+import ClothesVariants from '@/components/ClothesVariants.vue';
+import FoodVariants from '@/components/FoodVariants.vue';
+import TechVariants from '@/components/TechVariants.vue';
+import DefaultVariant from '@/components/DefaultVariant.vue';
+
+export default {
+  name: "PageModal",
+  visibility: "invisible",
+  props: {
+    open: {
+      type: Boolean,
+      required: true
+    }
+  },
+  data() {
+    return {
+      fechas: "",
+      numericProgress: "(2/8)",
+      formValues: {
+        titulo: "",
+        descripcion: "",
+        descripcionPro: "",
+        talla: "",
+        color: "",
+        sabor: "",
+        categoria: "",
+        precio: "",
+        moneda: "",
+        cantidad: "",
+        sku: "",
+        peso: "",
+        alto: "",
+        ancho: "",
+        profundo: "",
+        }
+      };
     },
-    data() {
-      return {
-        fechas:'',
-        numericProgress:'(2/8)',
-        formValues:{
-          titulo:'',
-          descripcion:'',
-          descripcionPro:'',
-          categoria:'',
-          talla:'',
-          color:'',
-          sabor:'',
-          precio:'' ,
-          moneda:'' ,
-          cantidad:'',
-          sku:'' ,
-          peso:'',
-          alto:'',
-          ancho:'',
-          profundo:'',
-      }
-    };
-  },
-  methods:{
-    submitForm(){
-      event.preventDefault()
-      console.log('Form values', this.formValues)
+  methods: {
+    submitForm() {
+      event.preventDefault();
+      console.log("Form values", this.formValues);
       this.$refs.productsListForm.reset();
-    }, 
+    },
+    getCategory() {
+      return document.getElementById("categoria");
+    }
   },
+  components: {
+    ClothesVariants,
+    FoodVariants,
+    TechVariants,
+    DefaultVariant
+}
 }
 </script>
 
@@ -449,7 +429,7 @@
   top: 0
 }
 
-.btn, .btn-blue, .btn-blue-outlined, .btn-brown, .btn-brown-outlined, .btn-green, .btn-green-outlined, .btn-red, .btn-red-outlined, .btn-ghost {
+.btn-green {
     padding: 15px 30px;
     border-radius: 5px;
     border: none;

@@ -7,7 +7,7 @@
       id="talla" 
       v-model="formValues.talla"
     >
-      <option value=""> </option>
+      <option value=""></option>
       <option value="s">S</option>
       <option value="m">M</option>
       <option value="l">L</option>
