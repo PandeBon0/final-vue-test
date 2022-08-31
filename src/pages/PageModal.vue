@@ -51,8 +51,9 @@
               id="titulo" 
               class="border rounded border-slate-300 h-15" 
               v-model="formValues.titulo"
-              required maxlength="40"
             >
+            <p v-if="!$v.form.titulo.required">El campo es obligatorio</p>
+            <p v-else-if="!$v.form.titulo.maxLength">El campo es demasiado extenso</p>
           </div>
           <br>
           <div class="flex flex-col">
@@ -66,8 +67,10 @@
               type="text" 
               id="descripcion" 
               class="border rounded border-slate-300 h-15"
-              v-model="formValues.descripcion" maxlength="100"
+              v-model="formValues.descripcion" 
             >
+            <p v-if="!$v.form.descripcion.maxLength">El campo es demasiado extenso</p>
+
           </div>
           <br>
           <div class="flex flex-col">
@@ -82,9 +85,9 @@
               id="descripcionPro" 
               class="border rounded border-slate-300 h-15"
               v-model="formValues.descripcionPro" 
-              maxlength="1000"
             >
             </textarea>
+            <p v-if="!$v.form.descripcionPro.maxLength">El campo es demasiado extenso</p>
           </div>
           <br>
           <h2>Variantes</h2>
@@ -100,6 +103,7 @@
           </div> -->
           
 
+
           <!-- <div class="text-center">
             <hr>
             <router-link 
@@ -109,6 +113,12 @@
               Edit Profile
             </router-link>
           </div> -->
+
+
+
+
+
+>>>>>>> 4a2025d8f2b480a354aef1605925ff7f7943029c
           
           <div class="flex flex-row items-center ml-20">
             <img 
@@ -133,11 +143,10 @@
                 v-model="formValues.cantidad" 
                 id="cantidad"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
-                required step="1" 
-                min="0" 
-                max="1000000"
-                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               >
+              <p v-if="!$v.form.cantidad.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.cantidad.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.cantidad.integer">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <label for="sku">
@@ -148,9 +157,10 @@
                 v-model="formValues.sku" 
                 id="sku"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
-                required maxlength="20"
-                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
               >
+              <p v-if="!$v.form.sku.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.sku.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.sku.integer">El campo debe ser numerico</p>
             </div>
           </div>
           <div class="flex flex-row">
@@ -168,6 +178,7 @@
                 <option value="dolar">Dolares</option>
                 <option value="euro">Euros</option>
               </select>
+              <p v-if="!$v.form.moneda.required">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <label for="precio" >Precio</label>
@@ -176,11 +187,11 @@
                 v-model="formValues.precio" 
                 id="precio"
                 class="border rounded border-slate-300 h-15  mr-2 my-0.5  gap-4" 
-                required step="50" 
-                min="0"
-                max="1000000000" 
-                onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                step="50" 
               >
+              <p v-if="!$v.form.precio.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.precio.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.precio.integer">El campo debe ser numerico</p>
             </div>
           </div>
           <br>
@@ -198,15 +209,14 @@
                   v-model="formValues.peso" 
                   id="peso"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  required step="1" 
-                  min="0"
-                  max="10000000" 
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
                 >
                 <h2 class="mx-1">
                   Grs
                 </h2>
               </div>
+              <p v-if="!$v.form.peso.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.peso.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.peso.integer">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <h2 class="semibold">Alto</h2>
@@ -216,15 +226,15 @@
                   v-model="formValues.alto" 
                   id="alto"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  step="10" 
-                  min="0" 
-                  max="1000000"
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                  step="10"            
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
               </div>
+              <p v-if="!$v.form.alto.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.alto.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.alto.integer">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <h2 class="semibold">
@@ -236,15 +246,15 @@
                   v-model="formValues.ancho" 
                   id="ancho"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  required step="10" 
-                  min="0"
-                  max="1000000" 
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                  step="10"  
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
               </div>
+              <p v-if="!$v.form.ancho.required">El campo es obligatorio</p>
+              <p v-else-if="!$v.form.ancho.between">Ingrese un valor correcto</p>
+              <p v-else-if="!$v.form.ancho.integer">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <h2 class="semibold">
@@ -256,14 +266,14 @@
                   v-model="formValues.profundo" 
                   id="profundo"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  required step="10" 
-                  min="0"
-                  max="1000000" 
-                  onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"
+                  step="10" 
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
+                <p v-if="!$v.form.profundo.required">El campo es obligatorio</p>
+                <p v-else-if="!$v.form.profundo.between">Ingrese un valor correcto</p>
+                <p v-else-if="!$v.form.profundo.integer">El campo debe ser numerico</p>
               </div>
             </div>
             <br>
@@ -292,6 +302,7 @@
             <button 
               class="font-semibold border rounded border-slate-300 p-2 bg-sky-500 w-20 text-white"
               @click="$emit('showProgress')"
+              :disabled="$v.form.$invalid"
             >
               Submit
             </button>
@@ -311,6 +322,8 @@
 // import FoodVariants from '@/components/FoodVariants.vue';
 // import TechVariants from '@/components/TechVariants.vue';
 import DefaultVariant from '@/components/DefaultVariant.vue';
+import useVuelidate from '@vuelidate/core'
+import { required, maxLength, integer, between } from '@vuelidate/validators'
 
 export default {
   name: "PageModal",
@@ -320,6 +333,9 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+  setup () {
+    return { $v: useVuelidate() }
   },
   data() {
     return {
@@ -341,14 +357,72 @@ export default {
         alto: "",
         ancho: "",
         profundo: "",
-        }
-      };
-    },
+      }
+    };
+  },
+  validations: {
+    form: {
+      titulo: {
+        required: required,
+        maxLength: maxLength(40),
+      },
+      descripcion: {
+        maxLength: maxLength(100),
+      },
+      descripcionPro: {
+        maxLength: maxLength(1000),
+      },
+      precio: {
+        required: required,
+        integer: integer,
+        between: between(0,10000000),
+      },
+      moneda: {
+        required: required,
+        integer: integer,
+      },
+      cantidad: {
+        required: required,
+        integer: integer,
+        between: between(0,100000),
+      },
+      sku: {
+        required: required,
+        integer: integer,
+        maxLength: maxLength(40),
+      },
+      peso: {
+        required: required,
+        integer: integer,
+        between: between(0,1000),
+      },
+      alto: {
+        required: required,
+        integer: integer,
+        between: between(0,1000),
+      },
+      ancho: {
+        required: required,
+        integer: integer,
+        between: between(0,1000),
+      },
+      profundo: {
+        required: required,
+        integer: integer,
+        between: between(0,1000),
+      },
+    }
+  },
   methods: {
     submitForm() {
       event.preventDefault();
-      console.log("Form values", this.formValues);
-      this.$refs.productsListForm.reset();
+      if(!this.$v.form.$invalid){
+        console.log("Form values", this.formValues);
+        this.$refs.productsListForm.reset();
+      } else {
+        console.log('Invalid form');
+      }
+      
     },
     getCategory() {
       return document.getElementById("categoria");
