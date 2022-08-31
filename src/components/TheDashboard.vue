@@ -128,19 +128,15 @@
 
 <script>
 import PageModal from "@/pages/PageModal.vue";
-import {ref} from "vue";
 
 export default {
   components: {PageModal},
     data() {
     return {
       fechas:'',
+      isOpen: false,
       numericProgress:'(2/8)',
     };
-  },
-  setup(){
-    const isOpen = ref(false)
-    return {isOpen}
   },
   methods: {
     showProgress() {

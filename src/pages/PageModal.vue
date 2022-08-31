@@ -90,16 +90,15 @@
           <h2>Variantes</h2>
           <!--VARIANTS AND SELECTORS-->
           <br>
-          
+          <DefaultVariant/>
+
+          <!-- <div>
           <ClothesVariants v-if="getCategory()==='vestimenta'"/>
           <FoodVariants v-else-if="getCategory()==='alimentos'"/>
           <TechVariants v-else-if="getCategory()==='tecnologia'"/>
           <DefaultVariant v-else/>
+          </div> -->
           
-
-
-
-
 
           <!-- <div class="text-center">
             <hr>
@@ -110,6 +109,7 @@
               Edit Profile
             </router-link>
           </div> -->
+          
           <div class="flex flex-row items-center ml-20">
             <img 
               class="bg-white-500 p-6  mx-10 h-13" 
@@ -307,9 +307,9 @@
 </template>
 
 <script>
-import ClothesVariants from '@/components/ClothesVariants.vue';
-import FoodVariants from '@/components/FoodVariants.vue';
-import TechVariants from '@/components/TechVariants.vue';
+// import ClothesVariants from '@/components/ClothesVariants.vue';
+// import FoodVariants from '@/components/FoodVariants.vue';
+// import TechVariants from '@/components/TechVariants.vue';
 import DefaultVariant from '@/components/DefaultVariant.vue';
 
 export default {
@@ -352,12 +352,15 @@ export default {
     },
     getCategory() {
       return document.getElementById("categoria");
+      // var select = document.getElementById('categoria');
+      // var value = select.options[select.selectedIndex].value;
+      // return value
     }
   },
   components: {
-    ClothesVariants,
-    FoodVariants,
-    TechVariants,
+    // ClothesVariants,
+    // FoodVariants,
+    // TechVariants,
     DefaultVariant
 }
 }
