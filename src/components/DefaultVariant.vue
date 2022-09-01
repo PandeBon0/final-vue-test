@@ -57,6 +57,11 @@
         }
       }
     },
+    methods: {
+      returnVariants () {
+        return this.formValues;
+      }
+    }
     // methods: {
     //   submitForm() {
     //   event.preventDefault();

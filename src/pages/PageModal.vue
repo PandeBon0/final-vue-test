@@ -29,7 +29,7 @@
               for="descripcion" 
               class=""
             >
-              Descripcion
+              Categoría
             </label>
             <select 
               id="categoria" 
@@ -51,10 +51,11 @@
               id="titulo" 
               class="border rounded border-slate-300 h-15" 
               v-model="v$.formValues.titulo.$model"
+              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
             >
             <div v-if="v$.formValues.titulo.$error">
-              <p v-if="!v$.formValues.titulo.required">El campo es obligatorio</p>
-              <p v-else-if="!v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
+              <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
+              <p v-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
             </div>
             
           </div>
@@ -71,9 +72,10 @@
               id="descripcion" 
               class="border rounded border-slate-300 h-15"
               v-model="v$.formValues.descripcion.$model" 
+              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
             >
             
-            <p v-if="!v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error">El campo es demasiado extenso</p>
+            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error">El campo es demasiado extenso</p>
 
           </div>
           <br>
@@ -91,7 +93,7 @@
               v-model="v$.formValues.descripcionPro.$model" 
             >
             </textarea>
-            <p v-if="!v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error">El campo es demasiado extenso</p>
+            <p v-if="v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error">El campo es demasiado extenso</p>
           </div>
           <br>
           <h2>Variantes</h2>
@@ -101,8 +103,8 @@
 
           <!-- <div>
           <ClothesVariants v-if="getCategory()==='vestimenta'"/>
-          <FoodVariants v-else-if="getCategory()==='alimentos'"/>
-          <TechVariants v-else-if="getCategory()==='tecnologia'"/>
+          <FoodVariants v-if="getCategory()==='alimentos'"/>
+          <TechVariants v-if="getCategory()==='tecnologia'"/>
           <DefaultVariant v-else/>
           </div> -->
 
@@ -135,15 +137,16 @@
                 Cantidad
               </label>
               <input 
-                type="text" 
+                type="number" 
                 v-model="v$.formValues.cantidad.$model" 
                 id="cantidad"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
+                :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
               >
               <div v-if="v$.formValues.cantidad.$error">
-                <p v-if="!v$.formValues.cantidad.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.cantidad.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.cantidad.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.cantidad.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.cantidad.between">Ingrese un valor correcto</p>
                 
               </div>
               
@@ -153,15 +156,15 @@
                 SKU
               </label>
               <input 
-                type="text" 
+                type="number" 
                 v-model="v$.formValues.sku.$model" 
                 id="sku"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
               >
               <div v-if="v$.formValues.sku.$error">
-                <p v-if="!v$.formValues.sku.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.sku.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
+                <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.sku.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
                 
               </div>
             </div>
@@ -181,21 +184,22 @@
                 <option value="dolar">Dolares</option>
                 <option value="euro">Euros</option>
               </select>
-              <p v-if="!v$.formValues.moneda.required && v$.formValues.moneda.$error">El campo debe ser numerico</p>
+              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error">El campo debe ser numerico</p>
             </div>
             <div class="flex flex-col">
               <label for="precio" >Precio</label>
               <input 
-                type="text" 
+                type="number" 
                 v-model="v$.formValues.precio.$model" 
                 id="precio"
                 class="border rounded border-slate-300 h-15  mr-2 my-0.5  gap-4" 
                 step="50" 
+                :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
               >
               <div v-if="v$.formValues.precio.$error">
-                <p v-if="!v$.formValues.precio.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.precio.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.precio.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.precio.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.precio.between">Ingrese un valor correcto</p>
                 
               </div>
             </div>
@@ -211,19 +215,20 @@
               </h2>
               <div class="flex flex-row">
                 <input 
-                  type="text" 
+                  type="number" 
                   v-model="v$.formValues.peso.$model" 
                   id="peso"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
+                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
                 >
                 <h2 class="mx-1">
                   Grs
                 </h2>
               </div>
               <div v-if="v$.formValues.peso.$error">
-                <p v-if="!v$.formValues.peso.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.peso.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.peso.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.peso.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.peso.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.peso.between">Ingrese un valor correcto</p>
                 
               </div>
             </div>
@@ -231,20 +236,21 @@
               <h2 class="semibold">Alto</h2>
               <div class="flex flex-row">
                 <input 
-                  type="text" 
+                  type="number" 
                   v-model="v$.formValues.alto.$model" 
                   id="alto"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  step="10"            
+                  step="10"   
+                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"         
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
               </div>
               <div v-if="v$.formValues.alto.$error">
-                <p v-if="!v$.formValues.alto.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.alto.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.alto.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.alto.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.alto.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.alto.between">Ingrese un valor correcto</p>
                 
               </div>
             </div>
@@ -254,20 +260,21 @@
               </h2>
               <div class="flex flex-row">
                 <input 
-                  type="text" 
+                  type="number" 
                   v-model="v$.formValues.ancho.$model" 
                   id="ancho"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
                   step="10"  
+                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
               </div>
               <div v-if="v$.formValues.ancho.$error">
-                <p v-if="!v$.formValues.ancho.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.ancho.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.ancho.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.ancho.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.ancho.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.ancho.between">Ingrese un valor correcto</p>
                 
               </div>
             </div>
@@ -277,19 +284,20 @@
               </h2>
               <div class="flex flex-row">
                 <input 
-                  type="text" 
+                  type="number" 
                   v-model="v$.formValues.profundo.$model" 
                   id="profundo"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
                   step="10" 
+                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
                 <div v-if="v$.formValues.profundo.$error">
-                <p v-if="!v$.formValues.profundo.required">El campo es obligatorio</p>
-                <p v-else-if="!v$.formValues.profundo.integer">El campo debe ser numerico</p>
-                <p v-else-if="!v$.formValues.profundo.between">Ingrese un valor correcto</p>
+                <p v-if="v$.formValues.profundo.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.profundo.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.profundo.between">Ingrese un valor correcto</p>
                 
               </div>
               </div>
@@ -316,6 +324,7 @@
               id="avatar" 
               name="avatar" 
               accept="image/png, image/jpeg"
+              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
             >
             <button 
               class="font-semibold border rounded border-slate-300 p-2 bg-sky-500 w-20 text-white"
@@ -398,7 +407,6 @@ export default {
         },
         moneda: {
           required,
-          integer,
         },
         cantidad: {
           required,
