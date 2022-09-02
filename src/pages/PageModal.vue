@@ -26,13 +26,14 @@
         <!--BEGIN FORM-->
           <div class="flex flex-col">
             <label 
-              for="descripcion" 
+              for="categoria" 
               class=""
             >
               Categoría
             </label>
             <select 
               id="categoria" 
+              v-model="formValues.categoria"
               class="border rounded border-slate-300 h-15 text-slate-400"
             >
               <option value="">Seleccione una categoria</option>
@@ -50,12 +51,13 @@
               type="text" 
               id="titulo" 
               class="border rounded border-slate-300 h-15" 
-              v-model="v$.formValues.titulo.$model"
-              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+              v-model="formValues.titulo"
+              @blur="v$.formValues.titulo.$touch()"
+              :class="{error: shouldAppendErrorClass(v$.formValues.titulo), valid: shouldAppendValidClass(v$.formValues.titulo) }"
             >
             <div v-if="v$.formValues.titulo.$error">
               <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
-              <p v-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
+              <p v-else-if="v$.formValues.titulo.between">El campo es demasiado extenso</p>
             </div>
             
           </div>
@@ -71,8 +73,9 @@
               type="text" 
               id="descripcion" 
               class="border rounded border-slate-300 h-15"
-              v-model="v$.formValues.descripcion.$model" 
-              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+              v-model="formValues.descripcion" 
+              @blur="v$.formValues.descripcion.$touch()"
+              :class="{error: shouldAppendErrorClass(v$.formValues.descripcion), valid: shouldAppendValidClass(v$.formValues.descripcion) }"
             >
             
             <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error">El campo es demasiado extenso</p>
@@ -90,7 +93,9 @@
               type="text" 
               id="descripcionPro" 
               class="border rounded border-slate-300 h-15"
-              v-model="v$.formValues.descripcionPro.$model" 
+              v-model="formValues.descripcionPro"
+              @blur="v$.formValues.descripcionPro.$touch()" 
+              :class="{error: shouldAppendErrorClass(v$.formValues.descripcionPro), valid: shouldAppendValidClass(v$.formValues.descripcionPro) }"
             >
             </textarea>
             <p v-if="v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error">El campo es demasiado extenso</p>
@@ -99,7 +104,52 @@
           <h2>Variantes</h2>
           <!--VARIANTS AND SELECTORS-->
           <br>
-          <DefaultVariant/>
+          <!-- <DefaultVariant/> -->
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+            <label for="talla">
+              Talla
+            </label>
+            <select 
+              id="talla" 
+              v-model="formValues.talla"
+            >
+              <option value=""> </option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+            </select>
+          </div>
+          <br>
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+            <label for="color">
+              Color
+            </label>
+            <select 
+              id="color" 
+              v-model="formValues.color"
+            >
+              <option value=""></option>
+              <option value="rojo">Rojo</option>
+              <option value="amarillo">Amarillo</option>
+              <option value="verde">Verde</option>
+              <option value="azul">Azul</option>
+            </select>
+          </div>
+          <br>
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+            <label for="sabor" class="">
+              Sabor
+            </label>
+            <select 
+              id="sabor" 
+              v-model="formValues.sabor"
+            >
+              <option value=""></option>
+              <option value="dulce">Dulce</option>
+              <option value="salado">Salado</option>
+              <option value="acido">Acido</option>
+            </select>
+          </div>
 
           <!-- <div>
           <ClothesVariants v-if="getCategory()==='vestimenta'"/>
@@ -138,10 +188,11 @@
               </label>
               <input 
                 type="number" 
-                v-model="v$.formValues.cantidad.$model" 
+                v-model="formValues.cantidad"
+                @blur="v$.formValues.cantidad.$touch()" 
                 id="cantidad"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
-                :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+                :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
               >
               <div v-if="v$.formValues.cantidad.$error">
                 <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
@@ -157,9 +208,11 @@
               </label>
               <input 
                 type="number" 
-                v-model="v$.formValues.sku.$model" 
+                v-model="formValues.sku" 
+                @blur="v$.formValues.sku.$touch()"
                 id="sku"
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
+                :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
               >
               <div v-if="v$.formValues.sku.$error">
                 <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
@@ -176,7 +229,8 @@
               </label>
               <select 
                 id="moneda" 
-                v-model="v$.formValues.moneda.$model"
+                v-model="formValues.moneda"
+                @blur="v$.formValues.moneda.$touch()"
                 class="border rounded border-slate-300 h-19 text-slate-400 mr-9 my-0.5 "
               >
                 <option value="">Seleccione moneda</option>
@@ -184,17 +238,18 @@
                 <option value="dolar">Dolares</option>
                 <option value="euro">Euros</option>
               </select>
-              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error">El campo debe ser numerico</p>
+              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error">El campo es obligatorio</p>
             </div>
             <div class="flex flex-col">
               <label for="precio" >Precio</label>
               <input 
                 type="number" 
-                v-model="v$.formValues.precio.$model" 
+                v-model="formValues.precio" 
+                @blur="v$.formValues.precio.$touch()"
                 id="precio"
                 class="border rounded border-slate-300 h-15  mr-2 my-0.5  gap-4" 
-                step="50" 
-                :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+
+                :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
               >
               <div v-if="v$.formValues.precio.$error">
                 <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
@@ -216,10 +271,11 @@
               <div class="flex flex-row">
                 <input 
                   type="number" 
-                  v-model="v$.formValues.peso.$model" 
+                  v-model="formValues.peso" 
+                  @blur="v$.formValues.peso.$touch()"
                   id="peso"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+                  :class="{error: shouldAppendErrorClass(v$.formValues.peso), valid: shouldAppendValidClass(v$.formValues.peso) }"
                 >
                 <h2 class="mx-1">
                   Grs
@@ -237,11 +293,12 @@
               <div class="flex flex-row">
                 <input 
                   type="number" 
-                  v-model="v$.formValues.alto.$model" 
+                  v-model="formValues.alto"
+                  @blur="v$.formValues.alto.$touch()" 
                   id="alto"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  step="10"   
-                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"         
+                  
+                  :class="{error: shouldAppendErrorClass(v$.formValues.alto), valid: shouldAppendValidClass(v$.formValues.alto) }"         
                 >
                 <h2 class="mx-1">
                   cm
@@ -261,11 +318,12 @@
               <div class="flex flex-row">
                 <input 
                   type="number" 
-                  v-model="v$.formValues.ancho.$model" 
+                  v-model="formValues.ancho" 
+                  @blur="v$.formValues.ancho.$touch()"
                   id="ancho"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  step="10"  
-                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+                 
+                  :class="{error: shouldAppendErrorClass(v$.formValues.ancho), valid: shouldAppendValidClass(v$.formValues.ancho) }"
                 >
                 <h2 class="mx-1">
                   cm
@@ -286,20 +344,22 @@
                 <input 
                   type="number" 
                   v-model="v$.formValues.profundo.$model" 
+                  @blur="v$.formValues.profundo.$touch()"
                   id="profundo"
                   class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
-                  step="10" 
-                  :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
+           
+                  :class="{error: shouldAppendErrorClass(v$.formValues.profundo), valid: shouldAppendValidClass(v$.formValues.profundo) }"
                 >
                 <h2 class="mx-1">
                   cm
                 </h2>
-                <div v-if="v$.formValues.profundo.$error">
+                
+              </div>
+              <div v-if="v$.formValues.profundo.$error">
                 <p v-if="v$.formValues.profundo.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.profundo.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.profundo.between">Ingrese un valor correcto</p>
                 
-              </div>
               </div>
             </div>
             <br>
@@ -324,13 +384,14 @@
               id="avatar" 
               name="avatar" 
               accept="image/png, image/jpeg"
-              :class="{error: v$.formValues.titulo.$error, valid: !v$.formValues.titulo.$invalid }"
             >
             <button 
               class="font-semibold border rounded border-slate-300 p-2 bg-sky-500 w-20 text-white"
               @click="$emit('showProgress')"
-              :disabled="v$.formValues.$invalid"
+              
             >
+            <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
+            el boton de submit dehabilitado con CSS Tailwind-->
               Submit
             </button>
           </div>
@@ -348,7 +409,7 @@
 // import ClothesVariants from '@/components/ClothesVariants.vue';
 // import FoodVariants from '@/components/FoodVariants.vue';
 // import TechVariants from '@/components/TechVariants.vue';
-import DefaultVariant from '@/components/DefaultVariant.vue';
+// import DefaultVariant from '@/components/DefaultVariant.vue';
 import useVuelidate from '@vuelidate/core'
 import { required, maxLength, integer, between } from '@vuelidate/validators'
 
@@ -390,9 +451,12 @@ export default {
   validations () {
     return {
       formValues: {
+        categoria: {
+          required,
+        },
         titulo: {
           required,
-          maxLength: maxLength(40),
+          between: between(0,50),
         },
         descripcion: {
           maxLength: maxLength(100),
@@ -442,28 +506,36 @@ export default {
     }
   },
   methods: {
+
+    shouldAppendValidClass (field) {
+      return !field.$invalid && field.$model && field.$dirty
+    },
+    shouldAppendErrorClass (field) {
+      return field.$error
+    },
     submitForm() {
       event.preventDefault();
+      this.v$.formValues.$touch()
       if(!this.v$.formValues.$invalid){
         console.log("Form values", this.formValues);
-        this.$refs.productsListForm.reset();
+         this.$refs.productsListForm.reset();
       } else {
         console.log('Invalid form');
       }
       
     },
-    getCategory() {
-      return document.getElementById("categoria");
-      // var select = document.getElementById('categoria');
-      // var value = select.options[select.selectedIndex].value;
-      // return value
-    }
+    // getCategory() {
+    //   return document.getElementById("categoria");
+    //   // var select = document.getElementById('categoria');
+    //   // var value = select.options[select.selectedIndex].value;
+    //   // return value
+    // }
   },
   components: {
     // ClothesVariants,
     // FoodVariants,
     // TechVariants,
-    DefaultVariant
+    // DefaultVariant
 }
 }
 </script>
