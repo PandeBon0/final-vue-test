@@ -1,37 +1,37 @@
 <template>
-  <div class="bg-white flex width: 100% ">
+  <div class="bg-white flex justify-evenly items-center">
     <img 
-      class=" bg-white-500 p-4 m-2 gap-1 object-scale-down" 
+      class=" bg-white-500 p-4 m-2 gap-1  " 
       src="@/assets/HeaderImages/Trazado1820.png"
     >
     <img 
-      class="bg-white-500 p-4 m-2 gap-1 object-scale-down" 
+      class="bg-white-500 p-4 m-2 gap-1  " 
       src="@/assets/HeaderImages/Grupo1528.png"
     >
     <div class="flex items-center border rounded border-r-slate-300
-     hover:border-indigo-300 w-64 h-10 mx-20 my-10">
+     hover:border-indigo-300 w-96 h-10 mx-20 my-10">
       <img 
-        class=" object-scale-down bg-white-500 p-0 m-0 w-128 h-8" 
+        class="   bg-white-500 p-0 m-0 w-128 h-8" 
         src="@/assets/HeaderImages/lupa.png"
       >
       <input 
-        class=" object-scale-down w-48 h-8 p-4 m-2 " 
+        class="   w-48 h-8 p-4 m-2 " 
         placeholder="Búsqueda"
       >
     </div>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1 object-scale-down" 
+      class="bg-white-500 p-4 m-0 gap-1  " 
       src="@/assets/HeaderImages/Trazado1292.png"
     >
     <h2 class="text-base my-12">
       Ver Sitio
     </h2>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1 object-scale-down" 
+      class="bg-white-500 p-4 m-0 gap-1  " 
       src="@/assets/HeaderImages/Trazado911.png"
     >
     <img 
-      class="bg-white-500 p-4 m-2 gap-1 ml-20 object-scale-down"
+      class="bg-white-500 p-4 m-2 gap-1 ml-20  "
       src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png"
     >
     <div class="flex-col my-10">
@@ -41,7 +41,7 @@
       <h2>Administrador</h2>
     </div>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1 mx-5 object-scale-down" 
+      class="bg-white-500 p-4 m-0 gap-1 mx-5  " 
       src="@/assets/HeaderImages/Trazado914.png"
     >
   </div>
@@ -52,5 +52,21 @@
   }
 </script>
 
-<style scoped>
-</style>
+
+
+<!--
+Primero fue ver si el problema estaba relacionado con la instalacion de tailwind
+segundo fue ver dado que yo lo habia hecho con vue cli si el procedimiento fue mal hecho
+asi que se reintalo el vue/cli pero corrigiendo la configuracion que podria hacer falta
+pero que configuracion hacia falta? la del plugin de vue cli tailwind
+o sea al corregir la intalacionde vue cli por una mejor (con plugin)
+aparecieron los errores respectivos de que hacia falta el postcss config
+lo siguiente fue hacer esa instalacion como lo venia diciendo 
+y la hacerla aparecio el problema de que vue cli necesitaba incluir una version especifica
+de postconfig css, y luego al buscar el error aparecieron las soluciones
+que era instalar esa version en especifico y asi se corrigio todo,
+ah y lo ultimo de que aparecian errores en el styles.css simplemente habia que ignorarlos
+en la configuracion del visual studio code para que no molestaran en la compilacion
+y ya 
+
+-->
