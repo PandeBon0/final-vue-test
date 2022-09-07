@@ -1,47 +1,50 @@
 <template>
-  <div class="bg-white flex justify-evenly items-center">
+  <div class="bg-white flex justify-evenly 
+  items-center border-b-2 border-thGreyBorder
+  font-openSans h-20">
     <img 
       class=" bg-white-500 p-4 m-2 gap-1  " 
       src="@/assets/HeaderImages/Trazado1820.png"
     >
     <img 
-      class="bg-white-500 p-4 m-2 gap-1  " 
+      class="bg-white-500 p-4 mr-2 gap-1  " 
       src="@/assets/HeaderImages/Grupo1528.png"
     >
     <div class="flex items-center border rounded border-r-slate-300
      hover:border-indigo-300 w-96 h-10 mx-20 my-10">
       <img 
-        class="   bg-white-500 p-0 m-0 w-128 h-8" 
+        class="   bg-white-500 p-0 m-0 w-128 h-8 object-scale-down" 
         src="@/assets/HeaderImages/lupa.png"
       >
       <input 
-        class="   w-48 h-8 p-4 m-2 " 
+        class="   w-96 h-8 p-4 m-2 " 
         placeholder="Búsqueda"
       >
     </div>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1  " 
+      class="bg-white-500 p-0 m-0   " 
       src="@/assets/HeaderImages/Trazado1292.png"
     >
-    <h2 class="text-base my-12">
+    <h2 class="text-sm my-12 ">
       Ver Sitio
     </h2>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1  " 
+      class="bg-white-500 p-4 ml-6 gap-1  " 
       src="@/assets/HeaderImages/Trazado911.png"
     >
+    
     <img 
-      class="bg-white-500 p-4 m-2 gap-1 ml-20  "
+      class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder "
       src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png"
     >
     <div class="flex-col my-10">
-      <h2 class="font-semibold">
+      <h2 class="font-semibold text-base">
         Andrés Suarez
       </h2>
-      <h2>Administrador</h2>
+      <h2 class="text-sm">Administrador</h2>
     </div>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1 mx-5  " 
+      class="bg-white-500 p-1 mr-5 gap-1 mx-0  " 
       src="@/assets/HeaderImages/Trazado914.png"
     >
   </div>

@@ -1,9 +1,9 @@
 <template>
   <div 
-    class="modal-overlay" 
+    class="modal-overlay " 
     v-show="open"
   >
-    <div class="modal-content">
+    <div class="modal-content w-148">
       <span 
         @click="$emit('close')" 
         class="close-button topright"
@@ -55,9 +55,9 @@
               @blur="v$.formValues.titulo.$touch()"
               :class="{error: shouldAppendErrorClass(v$.formValues.titulo), valid: shouldAppendValidClass(v$.formValues.titulo) }"
             >
-            <div v-if="v$.formValues.titulo.$error">
+            <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
               <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
-              <p v-else-if="v$.formValues.titulo.between">El campo es demasiado extenso</p>
+              <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
             </div>
             
           </div>
@@ -78,7 +78,8 @@
               :class="{error: shouldAppendErrorClass(v$.formValues.descripcion), valid: shouldAppendValidClass(v$.formValues.descripcion) }"
             >
             
-            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error">El campo es demasiado extenso</p>
+            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error" 
+            class="text-red-500 italic">El campo es demasiado extenso</p>
 
           </div>
           <br>
@@ -98,7 +99,8 @@
               :class="{error: shouldAppendErrorClass(v$.formValues.descripcionPro), valid: shouldAppendValidClass(v$.formValues.descripcionPro) }"
             >
             </textarea>
-            <p v-if="v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error">El campo es demasiado extenso</p>
+            <p v-if="v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error" 
+            class="text-red-500 italic">El campo es demasiado extenso</p>
           </div>
           <br>
           <h2>Variantes</h2>
@@ -194,7 +196,7 @@
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
                 :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
               >
-              <div v-if="v$.formValues.cantidad.$error">
+              <div v-if="v$.formValues.cantidad.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.cantidad.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.cantidad.between">Ingrese un valor correcto</p>
@@ -214,7 +216,7 @@
                 class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
                 :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
               >
-              <div v-if="v$.formValues.sku.$error">
+              <div v-if="v$.formValues.sku.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.sku.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
@@ -238,7 +240,8 @@
                 <option value="dolar">Dolares</option>
                 <option value="euro">Euros</option>
               </select>
-              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error">El campo es obligatorio</p>
+              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error" 
+              class="text-red-500 italic">El campo es obligatorio</p>
             </div>
             <div class="flex flex-col">
               <label for="precio" >Precio</label>
@@ -251,7 +254,7 @@
 
                 :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
               >
-              <div v-if="v$.formValues.precio.$error">
+              <div v-if="v$.formValues.precio.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.precio.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.precio.between">Ingrese un valor correcto</p>
@@ -281,7 +284,7 @@
                   Grs
                 </h2>
               </div>
-              <div v-if="v$.formValues.peso.$error">
+              <div v-if="v$.formValues.peso.$error"  class="text-red-500 italic">
                 <p v-if="v$.formValues.peso.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.peso.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.peso.between">Ingrese un valor correcto</p>
@@ -304,7 +307,7 @@
                   cm
                 </h2>
               </div>
-              <div v-if="v$.formValues.alto.$error">
+              <div v-if="v$.formValues.alto.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.alto.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.alto.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.alto.between">Ingrese un valor correcto</p>
@@ -329,7 +332,7 @@
                   cm
                 </h2>
               </div>
-              <div v-if="v$.formValues.ancho.$error">
+              <div v-if="v$.formValues.ancho.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.ancho.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.ancho.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.ancho.between">Ingrese un valor correcto</p>
@@ -355,7 +358,7 @@
                 </h2>
                 
               </div>
-              <div v-if="v$.formValues.profundo.$error">
+              <div v-if="v$.formValues.profundo.$error" class="text-red-500 italic">
                 <p v-if="v$.formValues.profundo.required">El campo es obligatorio</p>
                 <p v-else-if="v$.formValues.profundo.integer">El campo debe ser numerico</p>
                 <p v-else-if="v$.formValues.profundo.between">Ingrese un valor correcto</p>
@@ -456,7 +459,7 @@ export default {
         },
         titulo: {
           required,
-          between: between(0,50),
+          maxLength: maxLength(50),
         },
         descripcion: {
           maxLength: maxLength(100),

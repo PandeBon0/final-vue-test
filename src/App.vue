@@ -1,7 +1,10 @@
 <template>
+  <div class=" bg-bgGrey ">
 
     <router-view/>
  
+
+  </div>
   
 </template>
 
