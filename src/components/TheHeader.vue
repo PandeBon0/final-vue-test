@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white flex justify-evenly 
   items-center border-b-2 border-thGreyBorder
-  font-openSans h-20">
+  font-openSans h-20 lg:w-85 ">
     <img 
       class=" bg-white-500 p-4 m-2 gap-1  " 
       src="@/assets/HeaderImages/Trazado1820.png"
@@ -11,13 +11,13 @@
       src="@/assets/HeaderImages/Grupo1528.png"
     >
     <div class="flex items-center border rounded border-r-slate-300
-     hover:border-indigo-300 w-96 h-10 mx-20 my-10">
+     hover:border-indigo-300 w-96 h-9 mx-20 my-10">
       <img 
-        class="   bg-white-500 p-0 m-0 w-128 h-8 object-scale-down" 
+        class="   bg-white-500 p-0 ml-2 w-6 h-8 object-scale-down" 
         src="@/assets/HeaderImages/lupa.png"
       >
       <input 
-        class="   w-96 h-8 p-4 m-2 " 
+        class="   w-96 h-8 p-4 m-0 " 
         placeholder="Búsqueda"
       >
     </div>
