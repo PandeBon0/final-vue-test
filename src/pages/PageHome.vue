@@ -1,8 +1,9 @@
 <template>
 
-    
-    <TheHeader/>
-    <TheDashboard/>
+
+      <TheHeader/>
+      <TheDashboard/>
+   
  
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white flex justify-evenly 
+  <div class="bg-white flex justify-evenly 	
   items-center border-b-2 border-thGreyBorder
-  font-openSans h-20 lg:w-85 ">
+  font-openSans h-20 ">
     <img 
       class=" bg-white-500 p-4 m-2 gap-1  " 
       src="@/assets/HeaderImages/Trazado1820.png"

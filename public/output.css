@@ -903,6 +903,10 @@ video {
   align-items: center;
 }
 
+.justify-center{
+  justify-content: center;
+}
+
 .justify-between{
   justify-content: space-between;
 }
@@ -917,6 +921,14 @@ video {
 
 .gap-4{
   gap: 1rem;
+}
+
+.place-self-center{
+  place-self: center;
+}
+
+.self-center{
+  align-self: center;
 }
 
 .rounded{
