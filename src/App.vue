@@ -1,7 +1,11 @@
 <template>
-  <div class="container">
+  <div class=" bg-bgGrey ">
+
     <router-view/>
+ 
+
   </div>
+  
 </template>
 
 <script>

@@ -1,129 +1,138 @@
 <template>
-  <div class="flex flex-row" >
-    <div class=" bg-white flex width: 100% ">
-      <img 
-        class=" bg-white-500 p-4 m-2 gap-1 border-2 rounded border-slate-50 shadow-md object-scale-down"
-        src="@/assets/DashboardImages/NoPathcopia(8).png"
-      >
-      <div class="my-12">
-        <div class="flex-col text-left mt-12">
-          <h2 class="font-semibold">
-            Del campo Express
-          </h2>
-          <h2 class="text-sm">
-            Url de mi tienda en línea
-          </h2>
-          <div class="flex flex-row" >
-            <h2 class="text-sm text-cyan-600">
-              https://delcampoexpress.viveshops.co
+    <div class="flex justify-evenly items-center 
+     bg-white border-2 border-dbGreyBorder mt-8 mx-12 font-openSans h-56" >
+
+      <!--Del Campo Express logo and Url's-->
+      <div class=" flex items-center">
+        <img 
+          class="  p-4 m-2  border-2 rounded border-slate-50 shadow-md  "
+          src="@/assets/DashboardImages/NoPathcopia(8).png"
+        >
+          <div class="flex-col text-left mt-10 ml-3">
+            <h2 class="font-semibold text-lg">
+              Del campo Express
             </h2>
-            <img 
-              class="bg-white-500 mx-2 mt-0 w-128 h-5 my-12" 
-              src="@/assets/DashboardImages/filecopy.png"
-            >
+            <h2 class="text-base">
+              Url de mi tienda en línea
+            </h2>
+            <div class="flex flex-row" >
+              <h2 class="text-base text-cyan-600">
+                https://delcampoexpress.viveshops.co
+              </h2>
+              <img 
+                class="bg-white-500 mx-3 mt-0 w-128 h-5 my-12 object-scale-down" 
+                src="@/assets/DashboardImages/filecopy.png"
+              >
+            </div>
+          </div>
+      </div>
+
+
+      <div class="grid grid-cols-6 grid-rows-5 items-center  mt-0 text-base text-left 
+        border border-transparent border-l-dbGreyBorder ml-28 h-52">
+
+      <!--These are the progress bar and the complete your account text-->
+        <h2 class="ml-10  font-semibold col-span-3 row-span-1 text-lg">
+          Completa tu cuenta {{numericProgress}} 
+        </h2>
+        <div class=" -ml-28 bg-bgGrey rounded-full w-29  col-span-3 row-span-1 h-3.5">
+          <div 
+            id="progressBar" 
+            class="bg-progressBarBlue h-3.5 rounded-full " 
+            style="width: 25%"
+          >
           </div>
         </div>
-      </div>
-    </div>
-    <div class="grid grid-cols-6 grid-rows-5 items-center ml-5 mt-8 text-sm text'left
-      border border-transparent border-l-slate-200">
-      <h2 class="ml-12  font-semibold col-span-3 row-span-1">
-        Completa tu cuenta {{numericProgress}} 
-      </h2>
-      <div class="w-full -ml-10 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 col-span-3 row-span-1">
-        <div 
-          id="progressBar" 
-          class="bg-blue-600 h-2.5 rounded-full " 
-          style="width: 25%"
+
+
+        <img 
+          class="bg-white-500 mt-6 -ml-4 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1232.png"
         >
-        </div>
+        
+          <div class="content">
+            <button 
+              @click="isOpen = true" 
+              class=" mt-6 -ml-11 mr-3 col-span-1 text-left"
+              id="textGrey" 
+            >
+              Crear Producto
+            </button>
+            <PageModal 
+              :open="isOpen" 
+              @close="isOpen=!isOpen" 
+              @showProgress="showProgress()"
+            />
+          </div>
+        
+        <img 
+          id="checkPicture"
+          class="bg-white-500 mt-6 ml-0 w-0 h-4 col-span-1 invisible object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1235.png"
+        >
+        <img 
+          class="bg-white-500 mt-5 -ml-16 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1233.png"
+        >
+        <h2 class=" mt-5 -ml-22 col-span-1 text-slate-400">
+          Definir logo y colores
+        </h2>
+        <img  
+          class=" bg-white-500 mt-5 -ml-16 w-128 h-5 col-span-1 visible object-none" 
+          src="@/assets/DashboardImages/Trazado1235.png"
+        >
+        <img 
+          class="bg-white-500 mt-1 -ml-4 w-128 h-4 col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Grupo1826.png"
+        >
+        <h2 class=" mt-1 -ml-11 col-span-2 text-left ">
+          Definir cobertura envíos
+        </h2>     
+        <img 
+          class="bg-white-500 mt-1 -ml-16 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1236.png"
+        >
+        <h2  
+          class=" mt-1 -ml-22 col-span-1 text-slate-400"
+        >
+          Personalizar plantilla
+        </h2>
+        <img 
+          class="bg-white-500 mt-1 -ml-16 w-128 h-5 col-span-1 visible object-none" 
+          src="@/assets/DashboardImages/Trazado1235.png"
+        >
+        <img 
+          class="bg-white-500 -mt-4 -ml-4 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1238.png"
+        >
+        <h2 class=" -mt-4 -ml-11 col-span-2 text-left ">
+          Agregar método de pago
+        </h2>
+        <img 
+          class="bg-white-500 -mt-4 -ml-16 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/megaphone.png"
+        >
+        <h2 class=" -mt-4 -ml-22 col-span-2 text-left ">
+          Activar campañas
+        </h2>
+        <img 
+          class="bg-white-500 -mt-9 -ml-4 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1239.png"
+        >
+        <h2 class=" -mt-9 -ml-11 col-span-2 text-left ">
+          Establecer dominio
+        </h2>
+        <img 
+          class="bg-white-500 -mt-9 -ml-16 w-128 h-4  col-span-1 object-scale-down" 
+          src="@/assets/DashboardImages/Trazado1138.png"
+        >
+        <h2 class=" -mt-9 -ml-22 col-span-2 text-left ">
+          Completar documentos
+        </h2>
       </div>
-      <img 
-        class="bg-white-500 mt-6 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1232.png"
-      >
-      <div class="container">
-        <div class="content">
-          <button 
-            @click="isOpen = true" 
-            class=" mt-6 -ml-7 mr-3 col-span-1 text-left"
-            id="textGrey" 
-          >
-            Crear Producto
-          </button>
-          <PageModal 
-            :open="isOpen" 
-            @close="isOpen=!isOpen" 
-            @showProgress="showProgress()"
-          />
-        </div>
-      </div>
-      <img 
-        id="checkPicture"
-        class="bg-white-500 mt-6 ml-7 w-128 h-4 col-span-1 invisible" 
-        src="@/assets/DashboardImages/Trazado1235.png"
-      >
-      <img 
-        class="bg-white-500 mt-5 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1233.png"
-      >
-      <h2 class=" mt-5 -ml-7 col-span-1 text-slate-400">
-        Definir logo y colores
-      </h2>
-      <img  
-        class=" bg-white-500 mt-5 ml-8 w-128 h-4 col-span-1 visible" 
-        src="@/assets/DashboardImages/Trazado1235.png"
-      >
-      <img 
-        class="bg-white-500 mt-1 ml-12 w-128 h-4 col-span-1" 
-        src="@/assets/DashboardImages/Grupo1826.png"
-      >
-      <h2 class=" mt-1 -ml-7 col-span-2 text-left ">
-        Definir cobertura envíos
-      </h2>     
-      <img 
-        class="bg-white-500 mt-1 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1236.png"
-      >
-      <h2  
-        class=" mt-1 -ml-7 col-span-1 text-slate-400"
-      >
-        Personalizar plantilla
-      </h2>
-      <img 
-        class="bg-white-500 mt-1 ml-8 w-128 h-4 col-span-1 visible" 
-        src="@/assets/DashboardImages/Trazado1235.png"
-      >
-      <img 
-        class="bg-white-500 -mt-4 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1238.png"
-      >
-      <h2 class=" -mt-4 -ml-7 col-span-2 text-left ">
-        Agregar método de pago
-      </h2>
-      <img 
-        class="bg-white-500 -mt-4 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/megaphone.png"
-      >
-      <h2 class=" -mt-4 -ml-7 col-span-2 text-left ">
-        Activar campañas
-      </h2>
-      <img 
-        class="bg-white-500 -mt-9 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1239.png"
-      >
-      <h2 class=" -mt-9 -ml-7 col-span-2 text-left ">
-        Establecer dominio
-      </h2>
-      <img 
-        class="bg-white-500 -mt-9 ml-12 w-128 h-4  col-span-1" 
-        src="@/assets/DashboardImages/Trazado1138.png"
-      >
-      <h2 class=" -mt-9 -ml-7 col-span-2 text-left ">
-        Completar documentos
-      </h2>
     </div>
-  </div>
+ 
+
 </template>
 
 <script>
@@ -149,5 +158,12 @@ export default {
   }
 </script>
 
-<style scoped>
+<style scoped lang="css">
+.row {
+  @apply w-full my-5 bg-black flex justify-between items-center;
+}
+
+.item {
+  @apply w-40 h-40 bg-red-500;
+}
 </style>
