@@ -1,14 +1,14 @@
 <template>
-  <div class="bg-white flex width: 100% ">
+  <div class="bg-white flex width: 100% shrink-0	place-content-end	place-self-center">
     <img 
-      class=" bg-white-500 p-4 m-2 gap-1 object-scale-down" 
+      class=" bg-white-500 p-4 m-2 gap-1 object-scale-down shrink-0	" 
       src="@/assets/HeaderImages/Trazado1820.png"
     >
     <img 
       class="bg-white-500 p-4 m-2 gap-1 object-scale-down" 
       src="@/assets/HeaderImages/Grupo1528.png"
     >
-    <div class="flex items-center border rounded border-r-slate-300
+    <div class="flex items-center border rounded border-r-slate-300 shrink-0	
      hover:border-indigo-300 w-64 h-10 mx-20 my-10">
       <img 
         class=" object-scale-down bg-white-500 p-0 m-0 w-128 h-8" 
@@ -41,7 +41,7 @@
       <h2>Administrador</h2>
     </div>
     <img 
-      class="bg-white-500 p-4 m-0 gap-1 mx-5 object-scale-down" 
+      class="bg-white-500 p-4 m-0 gap-1 mx-5 object-scale-down " 
       src="@/assets/HeaderImages/Trazado914.png"
     >
   </div>

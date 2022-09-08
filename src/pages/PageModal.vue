@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="modal-overlay" 
+    class="modal-overlay items-center		place-content-end place-self-center" 
     v-show="open"
   >
     <div class="modal-content">
