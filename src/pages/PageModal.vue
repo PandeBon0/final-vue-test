@@ -103,11 +103,11 @@
             class="text-red-500 italic">El campo es demasiado extenso</p>
           </div>
           <br>
-          <h2>Variantes</h2>
+          <h2 class="text-xl font-bold">Variantes</h2>
           <!--VARIANTS AND SELECTORS-->
           <br>
           <!-- <DefaultVariant/> -->
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
             <label for="talla">
               Talla
             </label>
@@ -122,7 +122,7 @@
             </select>
           </div>
           <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
             <label for="color">
               Color
             </label>
@@ -138,7 +138,7 @@
             </select>
           </div>
           <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400">
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
             <label for="sabor" class="">
               Sabor
             </label>
@@ -172,10 +172,10 @@
           
           <div class="flex flex-row items-center ml-20">
             <img 
-              class="bg-white-500 p-6  mx-10 h-13" 
+              class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
               src="@/assets/PopupImages/mas.png"
             >
-            <h2 class="text-sky-400	">
+            <h2 class="text-blue-800	-ml-6">
               Agregar grupo de Toppings
             </h2>
           </div>
@@ -183,7 +183,7 @@
             Precio y disponibilidad
           </h2>
           <br>
-          <div class="flex flex-row">
+          <div class="grid grid-cols-2">
             <div class="flex flex-col">
               <label for="cantidad">
                 Cantidad
@@ -193,7 +193,7 @@
                 v-model="formValues.cantidad"
                 @blur="v$.formValues.cantidad.$touch()" 
                 id="cantidad"
-                class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
+                class="border rounded border-slate-300 h-8  w-10/12 mr-2 my-0.5 gap-4" 
                 :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
               >
               <div v-if="v$.formValues.cantidad.$error" class="text-red-500 italic">
@@ -213,7 +213,7 @@
                 v-model="formValues.sku" 
                 @blur="v$.formValues.sku.$touch()"
                 id="sku"
-                class="border rounded border-slate-300 h-15 mr-2 my-0.5  gap-4" 
+                class="border rounded border-slate-300 h-8 mr-2 my-0.5 w-10/12 gap-4" 
                 :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
               >
               <div v-if="v$.formValues.sku.$error" class="text-red-500 italic">
@@ -224,7 +224,7 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-row">
+          <div class="grid grid-cols-2">
             <div class="flex flex-col">
               <label for="moneda">
                 Moneda
@@ -233,7 +233,7 @@
                 id="moneda" 
                 v-model="formValues.moneda"
                 @blur="v$.formValues.moneda.$touch()"
-                class="border rounded border-slate-300 h-19 text-slate-400 mr-9 my-0.5 "
+                class="border rounded border-slate-300 h-8  w-10/12 text-slate-400 mr-9 my-0.5 "
               >
                 <option value="">Seleccione moneda</option>
                 <option value="peso">Pesos Colombianos</option>
@@ -250,7 +250,7 @@
                 v-model="formValues.precio" 
                 @blur="v$.formValues.precio.$touch()"
                 id="precio"
-                class="border rounded border-slate-300 h-15  mr-2 my-0.5  gap-4" 
+                class="border rounded border-slate-300 h-8  w-10/12  mr-2 my-0.5  gap-4" 
 
                 :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
               >
@@ -264,20 +264,21 @@
           </div>
           <br>
           <h2 class="text-lg	font-semibold">
-            Precio y disponibilidad
+            Dimensiones
           </h2>
+          <br>
           <div class="flex flex-row">
             <div class="flex flex-col">
               <h2 class="semibold">
                 Peso
               </h2>
-              <div class="flex flex-row">
+              <div class="flex flex-row items-center">
                 <input 
                   type="number" 
                   v-model="formValues.peso" 
                   @blur="v$.formValues.peso.$touch()"
                   id="peso"
-                  class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
+                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
                   :class="{error: shouldAppendErrorClass(v$.formValues.peso), valid: shouldAppendValidClass(v$.formValues.peso) }"
                 >
                 <h2 class="mx-1">
@@ -293,13 +294,13 @@
             </div>
             <div class="flex flex-col">
               <h2 class="semibold">Alto</h2>
-              <div class="flex flex-row">
+              <div class="flex flex-row items-center">
                 <input 
                   type="number" 
                   v-model="formValues.alto"
                   @blur="v$.formValues.alto.$touch()" 
                   id="alto"
-                  class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
+                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
                   
                   :class="{error: shouldAppendErrorClass(v$.formValues.alto), valid: shouldAppendValidClass(v$.formValues.alto) }"         
                 >
@@ -318,13 +319,13 @@
               <h2 class="semibold">
                 Ancho
               </h2>
-              <div class="flex flex-row">
+              <div class="flex flex-row items-center">
                 <input 
                   type="number" 
                   v-model="formValues.ancho" 
                   @blur="v$.formValues.ancho.$touch()"
                   id="ancho"
-                  class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
+                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
                  
                   :class="{error: shouldAppendErrorClass(v$.formValues.ancho), valid: shouldAppendValidClass(v$.formValues.ancho) }"
                 >
@@ -343,13 +344,13 @@
               <h2 class="semibold">
                 Profundo
               </h2>
-              <div class="flex flex-row">
+              <div class="flex flex-row items-center">
                 <input 
                   type="number" 
                   v-model="v$.formValues.profundo.$model" 
                   @blur="v$.formValues.profundo.$touch()"
                   id="profundo"
-                  class="border rounded border-slate-300 h-15 my-0.5 mr-2 gap-4" 
+                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
            
                   :class="{error: shouldAppendErrorClass(v$.formValues.profundo), valid: shouldAppendValidClass(v$.formValues.profundo) }"
                 >
@@ -368,9 +369,11 @@
             <br>
           </div>
           <br>
+          <br>
           <h2 class="text-lg	font-semibold">
             Fotos del producto
           </h2>
+          <br>
           <h2 class="ml-10"> 
             <b>Importante: </b>Las imagenes son el componente mas importante de <br>
             un buen e-commerce. Por favor cargue imagenes de buena calidad 
@@ -378,32 +381,44 @@
             de proporcion 4:3 y <br>color de fondo unificado
           </h2>
           <br>
-          <label for="avatar">
-            Escoja una imagen: 
-          </label>
-          <div class="grid grid-cols-2 items-left">
-            <input 
-              type="file" 
-              id="avatar" 
-              name="avatar" 
-              accept="image/png, image/jpeg"
-            >
-            <button 
-              class="font-semibold border rounded border-slate-300 p-2 bg-sky-500 w-20 text-white"
-              @click="$emit('showProgress')"
-              
-            >
-            <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
-            el boton de submit dehabilitado con CSS Tailwind-->
-              Submit
-            </button>
+          <br>
+          <div class="">
+            <label for="avatar">
+              Escoja una imagen: 
+            </label>
+            <div class="grid grid-cols-2">
+              <input 
+                type="file" 
+                id="avatar" 
+                name="avatar" 
+                accept="image/png, image/jpeg"
+              >
+            </div>
           </div>
+          <br>
+          <br>
+          <div class="grid grid-cols-2 items-center text-blue-800 font-semibold">
+            <button @click="$emit('close')">
+              Cancelar
+            </button>
+            <button 
+                class="font-semibold border rounded border-slate-300 p-2  bg-blue-800 w-28 text-white"
+                @click="$emit('showProgress')"
+                
+              >
+              <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
+              el boton de submit dehabilitado con CSS Tailwind-->
+                Guardar
+              </button>
+
+          </div>
+          
+
+
         </form>
         <!--END FORM-->
       </div>
-      <button @click="$emit('close')">
-        Close
-      </button>
+      
     </div>
   </div>
 </template>

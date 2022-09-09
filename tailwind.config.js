@@ -9,13 +9,18 @@ module.exports = {
     },
     extend: {
       spacing:{
-        '22': '5.5rem',
+        '22': '5.5rem', 
+        '100': '27rem',
+        '107': '48rem',
+        '88': '20.5rem',
+        '105': '39rem'
       },
       width: {
         '128': '32rem', 
         '148': '37rem',
         '85': '85rem',
         '29': '29rem',
+        
         
       },
       colors:{
