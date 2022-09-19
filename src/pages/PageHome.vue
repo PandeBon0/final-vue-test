@@ -1,20 +1,23 @@
 <template>
 
-
-      <TheHeader/>
+  <div class=" bg-bgGrey border min-h-screen">
+    <TheHeader/>
       <TheDashboard/>
       <TheStatistics/>
-      <div class="">
+      <div class=" absolute bottom-14 sm:bottom-7 right-24 mt-10 invisible lg:visible">
         <img 
-          class="mx-3 mt-4 w-128 h-10 object-none object-right ml-107" 
+          class=" object-none object-right " 
           src="@/assets/FooterImages/Grupo1671.png"
         >
-      </div>
-      <TheFooter/>
+      </div> 
+      <TheFooter class=""/>
+  </div>
+      
  
 </template>
 
 <script>
+  //mx-3 mt-4 w-128 h-10
 import TheHeader from '@/components/TheHeader.vue';
 import TheDashboard from '@/components/TheDashboard.vue';
 import TheFooter from '@/components/TheFooter.vue';

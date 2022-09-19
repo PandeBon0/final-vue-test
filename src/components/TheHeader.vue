@@ -1,58 +1,111 @@
 <template>
-  <div class="bg-white flex justify-evenly 	
-  items-center border-b-2 border-thGreyBorder
-  font-openSans h-20 ">
-    <img 
-      class=" bg-white-500 p-4 m-2 gap-1  " 
-      src="@/assets/HeaderImages/Trazado1820.png"
-    >
-    <img 
-      class="bg-white-500 p-4 mr-2 gap-1  " 
-      src="@/assets/HeaderImages/Grupo1528.png"
-    >
+  <nav class="bg-white md:flex md:justify-evenly 
+  md:items-center border-b-2 border-thGreyBorder
+  font-openSans h-20   
+  
+  ">
+
+    <div class="flex items-center justify-between">
+      <!-- Mobile menu button -->
+      <div @click="showMenu = !showMenu" class="flex md:hidden">
+        <button type="button" class="
+        text-gray-800
+        hover:text-gray-400
+          focus:outline-none focus:text-gray-400
+        ">
+          <svg viewBox="0 0 24 24" class="w-6 h-6 mt-5 ml-5 fill-current">
+            <path fill-rule="evenodd"
+              d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+            </path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <img class=" bg-white-500 p-4 m-2 gap-1 invisible md:visible " src="@/assets/HeaderImages/Trazado1820.png">
+    <img class="bg-white-500 p-4 mr-2 gap-1  " src="@/assets/HeaderImages/Grupo1528.png">
     <div class="flex items-center border rounded border-r-slate-300
      hover:border-indigo-300 w-96 h-9 mx-20 my-10">
-      <img 
-        class="   bg-white-500 p-0 ml-2 w-6 h-8 object-scale-down" 
-        src="@/assets/HeaderImages/lupa.png"
-      >
-      <input 
-        class="   w-96 h-8 p-4 m-0 " 
-        placeholder="Búsqueda"
-      >
+      <img class="   bg-white-500 p-0 ml-2 w-6 h-8 object-scale-down" src="@/assets/HeaderImages/lupa.png">
+      <input class="   w-96 h-8 p-4 m-0 " placeholder="Búsqueda">
+
     </div>
-    <img 
-      class="bg-white-500 p-0 m-0   " 
-      src="@/assets/HeaderImages/Trazado1292.png"
-    >
-    <h2 class="text-sm my-12 ">
-      Ver Sitio
-    </h2>
-    <img 
-      class="bg-white-500 p-4 ml-6 gap-1  " 
-      src="@/assets/HeaderImages/Trazado911.png"
-    >
-    
-    <img 
-      class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder "
-      src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png"
-    >
-    <div class="flex-col my-10">
-      <h2 class="font-semibold text-base">
-        Andrés Suarez
-      </h2>
-      <h2 class="text-sm">Administrador</h2>
-    </div>
-    <img 
-      class="bg-white-500 p-1 mr-5 gap-1 mx-0  " 
-      src="@/assets/HeaderImages/Trazado914.png"
-    >
-  </div>
+    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+    <ul :class="showMenu ? 'flex' : 'hidden'" class="
+            flex-col
+            mt-8
+            space-y-4
+            md:flex
+            md:space-y-0
+            md:flex-row
+            md:items-center
+            md:space-x-10
+            md:mt-0
+          ">
+      <li>
+        <img class="bg-white-500 p-0 m-0   " src="@/assets/HeaderImages/Trazado1292.png">
+        <h2 class="text-sm my-12 ">
+          Ver Sitio
+        </h2>
+      </li>
+      <li>
+
+        <img class="bg-white-500 p-4 ml-6 gap-1  " src="@/assets/HeaderImages/Trazado911.png">
+      </li>
+      <li>
+        <img class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder "
+          src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png">
+        <div class="flex-col my-10">
+          <h2 class="font-semibold text-base">
+            Andrés Suarez
+          </h2>
+          <h2 class="text-sm">Administrador</h2>
+        </div>
+        <img class="bg-white-500 p-1 mr-5 gap-1 mx-0  " src="@/assets/HeaderImages/Trazado914.png">
+      </li>
+
+    </ul>
+
+
+
+
+
+
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <script>
-  export default {
-  }
+export default {
+  data() {
+    return {
+      showMenu: false,
+    };
+  },
+}
 </script>
 
 
