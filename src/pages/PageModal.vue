@@ -1,9 +1,9 @@
 <template>
   <div 
-    class="modal-overlay " 
+    class="modal-overlay  " 
     v-show="open"
   >
-    <div class="modal-content w-148">
+    <div class="modal-content ">
       <span 
         @click="$emit('close')" 
         class="close-button topright"
@@ -569,6 +569,10 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  overflow:auto;
+  /* overflow: hidden; Hide scrollbars */
+
 }
 
 .modal-content {
@@ -584,25 +588,27 @@ export default {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   justify-self: center;
 }
-
+ 
 ::-webkit-scrollbar {
   width: 10px;
-}
+  /*display: none;
+  visibility: hidden; */
+} 
 
 /* Track */
-::-webkit-scrollbar-track {
+ ::-webkit-scrollbar-track {
   background: #f1f1f1; 
-}
+} 
  
 /* Handle */
-::-webkit-scrollbar-thumb {
+ ::-webkit-scrollbar-thumb {
   background: #888; 
-}
+} 
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+ ::-webkit-scrollbar-thumb:hover {
   background: #555; 
-}
+} 
 
 .close-button {
   border: none;
