@@ -1,13 +1,21 @@
 <template>
   <nav class="bg-white md:flex md:justify-evenly 
   md:items-center border-b-2 border-thGreyBorder
-  font-openSans h-20   
+  font-openSans h-20   grid
+
   
   ">
+  <img class=" bg-white-500 p-4 m-2 gap-1 invisible md:visible " src="@/assets/HeaderImages/Trazado1820.png">
+    <img class="bg-white-500 p-4 mr-2 w-48 md:w-52 gap-1 -mt-14 ml-10 md:mt-1 md:ml-0" src="@/assets/HeaderImages/Grupo1528.png">
+    <div class="flex items-center border rounded border-r-slate-300 -mt-[3.25rem] ml-60 md:mt-11 md:ml-0
+     hover:border-indigo-300 w-1/3 md:w-96 h-9 md:mx-20 md:my-10">
+      <img class="   bg-white-500 p-0 ml-2 w-6 h-8 object-scale-down" src="@/assets/HeaderImages/lupa.png">
+      <input class="  w-28 h-8 p-4 m-0 object-scale-down" placeholder="Búsqueda">
 
+    </div>
     <div class="flex items-center justify-between">
       <!-- Mobile menu button -->
-      <div @click="showMenu = !showMenu" class="flex md:hidden">
+      <div @click="showMenu = !showMenu" class="flex md:hidden -mt-[5.5rem]">
         <button type="button" class="
         text-gray-800
         hover:text-gray-400
@@ -22,14 +30,7 @@
       </div>
     </div>
 
-    <img class=" bg-white-500 p-4 m-2 gap-1 invisible md:visible " src="@/assets/HeaderImages/Trazado1820.png">
-    <img class="bg-white-500 p-4 mr-2 gap-1  " src="@/assets/HeaderImages/Grupo1528.png">
-    <div class="flex items-center border rounded border-r-slate-300
-     hover:border-indigo-300 w-96 h-9 mx-20 my-10">
-      <img class="   bg-white-500 p-0 ml-2 w-6 h-8 object-scale-down" src="@/assets/HeaderImages/lupa.png">
-      <input class="   w-96 h-8 p-4 m-0 " placeholder="Búsqueda">
-
-    </div>
+    
     <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
     <ul :class="showMenu ? 'flex' : 'hidden'" class="
             flex-col
@@ -53,7 +54,7 @@
         <img class="bg-white-500 p-4 ml-6 gap-1  " src="@/assets/HeaderImages/Trazado911.png">
       </li>
       <li>
-        <img class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder "
+        <img class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder visible"
           src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png">
         <div class="flex-col my-10">
           <h2 class="font-semibold text-base">

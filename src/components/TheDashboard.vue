@@ -4,12 +4,12 @@
      bg-white border-2 border-dbGreyBorder  mt-8 mx-12 font-openSans md:h-103 lg:h-72 xl:h-56 h-106" >
 
       <!--Del Campo Express logo and Url's-->
-      <div class=" flex items-center -mt-28 md:-mt-6 lg:mt-0">
+      <div class=" grid sm:flex items-center -mt-28 md:-mt-6 lg:mt-0">
         <img 
-          class="  p-4 m-2  border-2 rounded border-slate-50 shadow-md  "
+          class="  p-4 m-2  border-2 rounded border-slate-50 shadow-md  mt-16 ml-32 sm:mt-1 sm:ml-3 "
           src="@/assets/DashboardImages/NoPathcopia(8).png"
         >
-          <div class="flex-col text-left mt-10 ml-3">
+          <div class="flex-col text-left mt-8  ml-10 sm:mt-10 sm:ml-3">
             <h2 class="font-semibold text-lg">
               Del campo Express
             </h2>
@@ -29,16 +29,17 @@
       </div>
 
 
-      <div class="grid grid-cols-3 grid-rows-10 md:grid-cols-6 sm:grid-rows-5 items-center  -mt-48 md:-mt-36  
+      <div class="grid grid-cols-3 grid-rows-10 md:grid-cols-6 sm:grid-rows-5 items-center  -mt-36 md:-mt-36  
           lg:mt-0 text-base text-left 
         lg:border lg:border-transparent lg:border-l-dbGreyBorder lg:ml-28 lg:h-52">
 
       <!--These are the progress bar and the complete your account text-->
         
-           <h2 class="ml-10  mt-0 font-semibold col-span-3 md:col-span-6 xl:col-span-3 row-span-1 text-lg">
+           <h2 class="ml-12  mt-0 font-semibold col-span-3 md:col-span-6 xl:col-span-3 row-span-1 text-lg">
           Completa tu cuenta {{numericProgress}} 
         </h2>
-        <div class=" ml-10 xl:-ml-28 bg-bgGrey rounded-full  w-5/6 sm:w-29  xl:mt-0 mt-0 sm:-mt-4  col-span-3 md:col-span-6 xl:col-span-3 row-span-1 h-3.5">
+        <div class=" ml-10 xl:-ml-28 bg-bgGrey rounded-full 
+         w-5/6 sm:w-29 md:w-103 xl:mt-0 mt-1 sm:-mt-4  col-span-3 md:col-span-6 xl:col-span-3 row-span-1 h-3.5">
           <div 
             id="progressBar" 
             class="bg-progressBarBlue h-3.5 rounded-full " 
@@ -83,7 +84,7 @@
           Definir logo y colores
         </h2>
         <img  
-          class=" bg-white-500 mt-5 md:mt-5 -ml-16 w-128 h-5 col-span-1 visible object-none" 
+          class=" bg-white-500 mt-5 md:mt-5 -ml-14 w-128 h-5 col-span-1 visible object-none" 
           src="@/assets/DashboardImages/Trazado1235.png"
         >
         <img 
@@ -103,7 +104,7 @@
           Personalizar plantilla
         </h2>
         <img 
-          class="bg-white-500 mt-5 md:mt-1 -ml-16 w-128 h-5 col-span-1 visible object-none" 
+          class="bg-white-500 mt-5 md:mt-1 -ml-14 w-128 h-5 col-span-1 visible object-none" 
           src="@/assets/DashboardImages/Trazado1235.png"
         >
         <img 
