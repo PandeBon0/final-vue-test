@@ -170,12 +170,12 @@
             </router-link>
           </div> -->
           
-          <div class="flex flex-row items-center ml-20">
+          <div class="flex flex-row items-center -ml-16 justify-center">
             <img 
               class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
               src="@/assets/PopupImages/mas.png"
             >
-            <h2 class="text-blue-800	-ml-6">
+            <h2 class="text-[#005CAB] font-medium	-ml-6">
               Agregar grupo de Toppings
             </h2>
           </div>
@@ -382,33 +382,51 @@
           </h2>
           <br>
           <br>
-          <div class="">
-            <label for="avatar">
-              Escoja una imagen: 
-            </label>
-            <div class="grid grid-cols-2">
-              <input 
+
+          <form>
+            <input type="file" multiple>
+            <p>Drag your files here or click in this area.</p>
+            <button type="submit">Upload</button>
+          </form>
+
+
+          <form class="">
+            <input 
+              class="border border-black"
                 type="file" 
                 id="avatar" 
                 name="avatar" 
                 accept="image/png, image/jpeg"
               >
-            </div>
-          </div>
+            <img class="   bg-white-500    object-scale-down" src="@/assets/PopupImages/Trazado1127.png">
+            <p>
+              Arrastra los archivos aquí 
+            </p>
+            
+            <p>o</p>
+
+            <button type="submit">selecciona archivos</button>
+            
+              
+            
+          </form>
+          
+          
+
           <br>
           <br>
-          <div class="grid grid-cols-2 items-center text-blue-800 font-semibold">
+          <div class="grid grid-cols-2 items-center text-[#005CAB] font-medium">
             <button @click="$emit('close')">
-              Cancelar
+              CANCELAR
             </button>
             <button 
-                class="font-semibold border rounded border-slate-300 p-2  bg-blue-800 w-28 text-white"
+                class="font-medium border rounded-md border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 " 
                 @click="$emit('showProgress')"
                 
               >
               <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
               el boton de submit dehabilitado con CSS Tailwind-->
-                Guardar
+                GUARDAR
               </button>
 
           </div>
@@ -542,6 +560,156 @@ export default {
       }
       
     },
+
+
+     ekUpload(){
+  function Init() {
+
+    console.log("Upload Initialised");
+
+    var fileSelect    = document.getElementById('file-upload'),
+        fileDrag      = document.getElementById('file-drag'),
+        submitButton  = document.getElementById('submit-button');
+
+    fileSelect.addEventListener('change', fileSelectHandler, false);
+
+    // Is XHR2 available?
+    var xhr = new XMLHttpRequest();
+    if (xhr.upload) {
+      // File Drop
+      fileDrag.addEventListener('dragover', fileDragHover, false);
+      fileDrag.addEventListener('dragleave', fileDragHover, false);
+      fileDrag.addEventListener('drop', fileSelectHandler, false);
+    }
+  }
+
+  function fileDragHover(e) {
+    var fileDrag = document.getElementById('file-drag');
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+  }
+
+  function fileSelectHandler(e) {
+    // Fetch FileList object
+    var files = e.target.files || e.dataTransfer.files;
+
+    // Cancel event and hover styling
+    fileDragHover(e);
+
+    // Process all File objects
+    for (var i = 0, f; f = files[i]; i++) {
+      parseFile(f);
+      uploadFile(f);
+    }
+  }
+
+  // Output
+  function output(msg) {
+    // Response
+    var m = document.getElementById('messages');
+    m.innerHTML = msg;
+  }
+
+  function parseFile(file) {
+
+    console.log(file.name);
+    output(
+      '<strong>' + encodeURI(file.name) + '</strong>'
+    );
+    
+    // var fileType = file.type;
+    // console.log(fileType);
+    var imageName = file.name;
+
+    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+    if (isGood) {
+      document.getElementById('start').classList.add("hidden");
+      document.getElementById('response').classList.remove("hidden");
+      document.getElementById('notimage').classList.add("hidden");
+      // Thumbnail Preview
+      document.getElementById('file-image').classList.remove("hidden");
+      document.getElementById('file-image').src = URL.createObjectURL(file);
+    }
+    else {
+      document.getElementById('file-image').classList.add("hidden");
+      document.getElementById('notimage').classList.remove("hidden");
+      document.getElementById('start').classList.remove("hidden");
+      document.getElementById('response').classList.add("hidden");
+      document.getElementById("file-upload-form").reset();
+    }
+  }
+
+  function setProgressMaxValue(e) {
+    var pBar = document.getElementById('file-progress');
+
+    if (e.lengthComputable) {
+      pBar.max = e.total;
+    }
+  }
+
+  function updateFileProgress(e) {
+    var pBar = document.getElementById('file-progress');
+
+    if (e.lengthComputable) {
+      pBar.value = e.loaded;
+    }
+  }
+
+  function uploadFile(file) {
+
+    var xhr = new XMLHttpRequest(),
+      fileInput = document.getElementById('class-roster-file'),
+      pBar = document.getElementById('file-progress'),
+      fileSizeLimit = 1024; // In MB
+    if (xhr.upload) {
+      // Check if file is less than x MB
+      if (file.size <= fileSizeLimit * 1024 * 1024) {
+        // Progress bar
+        pBar.style.display = 'inline';
+        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+        xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+        // File received / failed
+        xhr.onreadystatechange = function(e) {
+          if (xhr.readyState == 4) {
+            // Everything is good!
+
+            // progress.className = (xhr.status == 200 ? "success" : "failure");
+            // document.location.reload(true);
+          }
+        };
+
+        // Start upload
+        xhr.open('POST', document.getElementById('file-upload-form').action, true);
+        xhr.setRequestHeader('X-File-Name', file.name);
+        xhr.setRequestHeader('X-File-Size', file.size);
+        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+        xhr.send(file);
+      } else {
+        output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+      }
+    }
+  }
+
+  // Check for the various File API support.
+  if (window.File && window.FileList && window.FileReader) {
+    Init();
+  } else {
+    document.getElementById('file-drag').style.display = 'none';
+  }
+}
+
+
+
+
+    
+    
+
+
+    
     // getCategory() {
     //   return document.getElementById("categoria");
     //   // var select = document.getElementById('categoria');
