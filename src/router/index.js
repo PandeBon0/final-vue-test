@@ -48,8 +48,8 @@ export default createRouter({
     routes,
     scrollBehavior(to) {
         const scroll = {};
-        // if (to.meta.toTop) scroll.top = 0
-        // if (to.meta.smoothScroll) scroll.behavior = 'smooth' 
+        if (to.meta.toTop) scroll.top = 0
+        if (to.meta.smoothScroll) scroll.behavior = 'smooth' 
         return scroll;
     },
 });

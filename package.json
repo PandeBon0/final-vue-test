@@ -57,5 +57,5 @@
   ],
   "_moduleAliases": {
     "App": "<final-vue-test>/modules/App"
- }
+  }
 }
