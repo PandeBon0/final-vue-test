@@ -1,5 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import PageHome from './pages/PageHome.vue'
+import  PageHome from '@/pages/PageHome.vue'
 // import FoodVariants from '@/components/FoodVariants.vue'
 // import TechVariants from '@/components/TechVariants.vue'
 // import ClothesVariants from '@/components/ClothesVariants.vue'
