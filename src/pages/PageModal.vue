@@ -370,7 +370,9 @@
           </div>
           <br>
           <br>
-          <h2 class="text-lg	font-semibold">
+
+          <!--Aqui empiezan los primeros intentos de file input-->
+          <!-- <h2 class="text-lg	font-semibold">
             Fotos del producto
           </h2>
           <br>
@@ -409,9 +411,26 @@
             
               
             
-          </form>
+          </form> -->
+          <!--Aqui terminan los primeros intentos de file input-->
           
-          
+          <div class="form-section">
+            <h4 class="form-subtitle">Fotos del producto</h4>
+
+            <p class="section-description text-left">
+              <strong>Importante: </strong>Las imágenes son el componente más importante de un buen ecommerce. Por favor cargue imágenes de buena calidad y tamaño. Le recomendamos usar estándares de proporción 4:3 y color de fondo unificado.
+            </p>
+
+            <AppInputFile
+              :multiple="true"
+              :images="true"
+              :files="pictures"
+              @update-files="setPictures($event)"
+              @delete-file="deleteFile($event)"
+            />
+          </div>
+
+
 
           <br>
           <br>
@@ -441,14 +460,14 @@
   </div>
 </template>
 
-<script>
+<script >
 // import ClothesVariants from '@/components/ClothesVariants.vue';
 // import FoodVariants from '@/components/FoodVariants.vue';
 // import TechVariants from '@/components/TechVariants.vue';
 // import DefaultVariant from '@/components/DefaultVariant.vue';
 import useVuelidate from '@vuelidate/core'
 import { required, maxLength, integer, between } from '@vuelidate/validators'
-
+import AppInputFile from '@/components/AppInputFile.vue';
 export default {
   name: "PageModal",
   visibility: "invisible",
@@ -460,6 +479,9 @@ export default {
   },
   setup () {
     return { v$: useVuelidate() }
+  },
+  components: {
+    AppInputFile,
   },
   data() {
     return {
