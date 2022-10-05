@@ -51,10 +51,11 @@
       </li>
       <li>
 
-        <img class="bg-white-500 p-4 ml-6 gap-1  " src="@/assets/HeaderImages/Trazado911.png">
+      <img class="bg-white-500 p-4 ml-6 gap-1  " src="@/assets/HeaderImages/Trazado911.png">
       </li>
-      <li>
-        <img class="bg-white-500 pl-7 gap-1 ml-2 border border-transparent border-l-thGreyBorder visible"
+      <li class="flex">
+        <img class="bg-white-500 pl-7 gap-1 ml-2 mr-4 h-10 mt-10 
+        border border-transparent border-l-thGreyBorder visible object-contain"
           src="@/assets/HeaderImages/christopher-campbell-28567-unsplash.png">
         <div class="flex-col my-10">
           <h2 class="font-semibold text-base">
@@ -62,7 +63,8 @@
           </h2>
           <h2 class="text-sm">Administrador</h2>
         </div>
-        <img class="bg-white-500 p-1 mr-5 gap-1 mx-0  " src="@/assets/HeaderImages/Trazado914.png">
+        <img class="bg-white-500 p-1 mr-5 gap-1 ml-3 mt-0 object-scale-down " 
+        src="@/assets/HeaderImages/Trazado914.png">
       </li>
 
     </ul>

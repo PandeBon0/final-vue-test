@@ -1,20 +1,7 @@
 <script setup lang="ts">
   import { computed, PropType } from 'vue';
 
-  defineProps({
-  name: {
-    type: String,
-    required: false
-  },
-  icon: {
-    type: String,
-    required: false
-  },
-  status: {
-    type: Boolean,
-    required: false
-  },
-});
+  
   
   const props = defineProps({
     multiple: {
@@ -40,6 +27,7 @@
     files: {
       type: Array as PropType<File[]>,
       required: true,
+      default: null,
     },
   });
   
