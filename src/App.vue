@@ -1,9 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div >
+
+    <router-view/>
+ 
+
+  </div>
+  
 </template>
 
 <script>
+<<<<<<< HEAD
   
 import { defineComponent } from 'vue';
 // import HelloWorld from './components/HelloWorld.vue';
@@ -14,15 +20,14 @@ export default defineComponent({
     // HelloWorld
   }
 });
+=======
+export default {
+  name: 'App',
+  components: {
+}
+}
+>>>>>>> 339beb4e13860a484c033804596974d32c97df41
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
 </style>

@@ -6,7 +6,8 @@ import router from './router';
 import './assets/tailwind.css';
 // let myApp = new path.App();
 // // const DashboardApp = createApp(myApp);
-const DashboardApp = createApp(App);
+var DashboardApp = createApp(App);
 DashboardApp.use(router);
 DashboardApp.mount('#app');
+//# sourceMappingURL=main.js.map
 //# sourceMappingURL=main.js.map

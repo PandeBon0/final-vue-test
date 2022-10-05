@@ -370,7 +370,9 @@
           </div>
           <br>
           <br>
-          <h2 class="text-lg	font-semibold">
+
+          <!--Aqui empiezan los primeros intentos de file input-->
+          <!-- <h2 class="text-lg	font-semibold">
             Fotos del producto
           </h2>
           <br>
@@ -409,9 +411,50 @@
             
               
             
+          </form> -->
+          <!--Aqui terminan los primeros intentos de file input-->
+          
+          <!-- <div class="form-section">
+            <h4 class="form-subtitle">Fotos del producto</h4>
+
+            <p class="section-description text-left">
+              <strong>Importante: </strong>Las imágenes son el componente más importante de un buen ecommerce. Por favor cargue imágenes de buena calidad y tamaño. Le recomendamos usar estándares de proporción 4:3 y color de fondo unificado.
+            </p>
+
+            <AppInputFile
+              :multiple="true"
+              :images="true"
+              :files="pictures"
+              @update-files="setPictures($event)"
+              @delete-file="deleteFile($event)"
+            />
+          </div>  -->
+
+
+          <h2 class="text-lg	font-semibold">
+            Fotos del producto
+          </h2>
+          <br>
+          <h2 class="ml-10 mb-20"> 
+            <b>Importante: </b>Las imagenes son el componente mas importante de 
+            un buen e-commerce. Por favor cargue imagenes de buena calidad 
+            y tamaño. Le recomendamos usar estandares
+            de proporcion 4:3 y color de fondo unificado
+          </h2>
+          <br>
+          <br>
+
+          <form id="fileInputArea" action="upload.php" method="POST" 
+            class="relative -mt-24 -ml-40 sm:-ml-64 
+            w-88 md:w-125 border-2 rounded-md" >
+            <input type="file" multiple class="-mt-40">
+            <p>Arrastra los archivos aqui.</p>
+            
+            
+            <button class="bg-white border text-progressBarBlue
+            border-[#005CAB] rounded-md  w-48 h-11 md:w-125 text-sm"
+              type="submit">Selecciona archivos</button>
           </form>
-          
-          
 
           <br>
           <br>
@@ -427,7 +470,7 @@
               <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
               el boton de submit dehabilitado con CSS Tailwind-->
                 GUARDAR
-              </button>
+            </button>
 
           </div>
           
@@ -441,13 +484,35 @@
   </div>
 </template>
 
-<script>
+<script >
 // import ClothesVariants from '@/components/ClothesVariants.vue';
 // import FoodVariants from '@/components/FoodVariants.vue';
 // import TechVariants from '@/components/TechVariants.vue';
 // import DefaultVariant from '@/components/DefaultVariant.vue';
 import useVuelidate from '@vuelidate/core'
-import { required, maxLength, integer, between } from '@vuelidate/validators'
+import { required, maxLength, integer, between, minLength } from '@vuelidate/validators'
+import AppInputFile from '@/components/AppInputFile.vue';
+import { computed, PropType } from 'vue';
+import { onMounted } from 'vue'
+
+// const rules = computed(() => {
+//   return {
+    
+//   }
+// });
+
+
+
+
+onMounted(() => {
+  document.getElementById(fileInputArea).ready(function(){
+  document.getElementById('fileInputArea input').change(function () {
+    document.getElementById('fileInputArea p').text(this.files.length + " file(s) selected");
+  });
+});
+})
+
+
 
 export default {
   name: "PageModal",
@@ -456,10 +521,14 @@ export default {
     open: {
       type: Boolean,
       required: true
-    }
+    },
+    
   },
   setup () {
     return { v$: useVuelidate() }
+  },
+  components: {
+    AppInputFile,
   },
   data() {
     return {
@@ -481,6 +550,7 @@ export default {
         alto: "",
         ancho: "",
         profundo: "",
+        pictures: "",
       }
     };
   },
@@ -538,6 +608,10 @@ export default {
           integer,
           between: between(0,1000),
         },
+        // pictures: { 
+        //   required, 
+        //   minLength: minLength(1), 
+        //   }
       }
     }
   },
@@ -589,6 +663,56 @@ export default {
 </script>
 
 <style scoped>
+
+#fileInputArea{
+
+  top: 50%;
+  left: 50%;
+  /* margin-top: -100px; */
+  /* margin-left: -250px; */
+  /* width: 500px; */
+  height: 200px;
+  border:  dashed #DDDFDF;;
+}
+#fileInputArea p{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 170px;
+  color: rgba(0,0,0,0.9);
+  font-family: Arial;
+}
+#fileInputArea input{
+  position: absolute;
+
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+#fileInputArea button{
+  margin: 0;
+
+
+
+
+  margin-top: -20px;
+  margin-left: -4px;
+
+
+  transition: all .2s ease;
+  outline: none;
+}
+#fileInputArea button:hover{
+  background: #149174;
+	color: #0C5645;
+}
+#fileInputArea button:active{
+  border:0;
+}
+
+
 .modal-overlay {
   position: absolute;
   top: 0;

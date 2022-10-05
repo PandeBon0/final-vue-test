@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import PageHome from './pages/PageHome.vue';
+import PageHome from '@/pages/PageHome.vue';
 // import FoodVariants from '@/components/FoodVariants.vue'
 // import TechVariants from '@/components/TechVariants.vue'
 // import ClothesVariants from '@/components/ClothesVariants.vue'
 // import VariantSelector from '@/components/VariantSelector.vue'
-const routes = [
+var routes = [
     {
         path: '/',
         name: 'Home',
@@ -45,9 +45,9 @@ const routes = [
 ];
 export default createRouter({
     history: createWebHistory(),
-    routes,
-    scrollBehavior(to) {
-        const scroll = {};
+    routes: routes,
+    scrollBehavior: function (to) {
+        var scroll = {};
         // if (to.meta.toTop) scroll.top = 0
         // if (to.meta.smoothScroll) scroll.behavior = 'smooth' 
         return scroll;
