@@ -18,10 +18,10 @@
 
 <script>
   //mx-3 mt-4 w-128 h-10
-import TheHeader from '@/components/TheHeader.vue';
-import TheDashboard from '@/components/TheDashboard.vue';
-import TheFooter from '@/components/TheFooter.vue';
-import TheStatistics from '@/components/TheStatistics.vue';
+import TheHeader from '@/staticComponents/TheHeader.vue';
+import TheDashboard from '@/staticComponents/TheDashboard.vue';
+import TheFooter from '@/staticComponents/TheFooter.vue';
+import TheStatistics from '@/staticComponents/TheStatistics.vue';
 
 export default {
   components: {

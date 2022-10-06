@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h2>File Upload & Image Preview</h2>
-<p class="lead">No Plugins <b>Just Javascript</b></p>
+ 
 
 <!-- Upload  -->
-<form id="file-upload-form" class="uploader">
+<form id="file-upload-form" class="uploader " @click="ekUpload, $emit('emmitImage')">
   <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
 
   <label for="file-upload" id="file-drag">
-    <!-- <img id="file-image" src="#" alt="Preview" class="hidden"> -->
+     <img id="file-image" src="@/assets/PopupImages/Trazado1127.png" alt="Preview" class="">
     <div id="start">
-      <!-- <i class="fa fa-download" aria-hidden="true"></i> -->
-      <div>Select a file or drag here</div>
+       <i class="fa fa-download" aria-hidden="true"></i> 
+      <div>Arrastra los archivos aquí</div>
+      <div>o</div>
       <div id="notimage" class="hidden">Please select an image</div>
-      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+      <span id="file-upload-btn" class="btn btn-primary">Selecciona archivos</span>
     </div>
     <div id="response" class="hidden">
       <div id="messages"></div>
@@ -28,12 +28,21 @@
 </template>
 
 <script >
+
+  export default {
+    methods: {
+      emmitImage() {
+        this.$emmit(document.getElementById('file-upload').value);
+      }
+    }
+  }
+
   // File Upload
 // 
 function ekUpload(){
   function Init() {
 
-    console.log("Upload Initialised");
+    // console.log("Upload Initialised");
 
     var fileSelect    = document.getElementById('file-upload'),
         fileDrag      = document.getElementById('file-drag'),
@@ -169,33 +178,60 @@ function ekUpload(){
     document.getElementById('file-drag').style.display = 'none';
   }
 }
-ekUpload();
+
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+
+waitForElm('#file-upload').then((elm) => {
+  ekUpload();
+});
+
+
 </script>
 
 <style lang="scss" scoped>
   // Imports
 // 
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+// @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+// @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 // Vars and Reset
 // 
-$theme:       #454cad;
+$theme:       #005CAB;
 $dark-text:   #5f6982;
 
-html,body,* { box-sizing: border-box; font-size: 16px;}
-html,body   { height: 100%; text-align: center;}
-body        { padding: 2rem; background: #f8f8f8;}
+// html,body,* { box-sizing: border-box; font-size: 16px;}
+// html,body   { height: 100%; text-align: center;}
+// body        { padding: 2rem; background: #f8f8f8;}
 
 h2 {
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
   font-size: 26px;
   line-height: 1;
   color: $theme;
   margin-bottom: 0;
 }
 p {
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
   font-size: 18px;
   color: $dark-text;
 }
@@ -216,7 +252,7 @@ p {
     text-align: center;
     background: #fff;
     border-radius: 7px;
-    border: 3px solid #eee;
+    border: 3px dashed #B4BBBC;
     transition: all .2s ease;
     user-select: none;
 
@@ -328,16 +364,17 @@ p {
     font-size: 14px;
     text-decoration: none;
     text-transform: initial;
-    border: none;
-    border-radius: .2rem;
+    border: solid;
+    border-radius: .4rem;
+    border-width: 2px;
     outline: none;
     padding: 0 1rem;
     height: 36px;
     line-height: 36px;
-    color: #fff;
+    color: $theme;
     transition: all 0.2s ease-in-out;
     box-sizing: border-box;
-    background: $theme;
+    background: white;
     border-color: $theme;
     cursor: pointer;
   }

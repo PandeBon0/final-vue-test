@@ -151,25 +151,7 @@
               <option value="salado">Salado</option>
               <option value="acido">Acido</option>
             </select>
-          </div>
-
-          <!-- <div>
-          <ClothesVariants v-if="getCategory()==='vestimenta'"/>
-          <FoodVariants v-if="getCategory()==='alimentos'"/>
-          <TechVariants v-if="getCategory()==='tecnologia'"/>
-          <DefaultVariant v-else/>
-          </div> -->
-
-          <!-- <div class="text-center">
-            <hr>
-            <router-link 
-              :to="{name: 'VariantSelector'}" 
-              class="btn-green btn-small"
-            >
-              Edit Profile
-            </router-link>
-          </div> -->
-          
+          </div>         
           <div class="flex flex-row items-center -ml-16 justify-center">
             <img 
               class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
@@ -371,66 +353,6 @@
           <br>
           <br>
 
-          <!--Aqui empiezan los primeros intentos de file input-->
-          <!-- <h2 class="text-lg	font-semibold">
-            Fotos del producto
-          </h2>
-          <br>
-          <h2 class="ml-10"> 
-            <b>Importante: </b>Las imagenes son el componente mas importante de <br>
-            un buen e-commerce. Por favor cargue imagenes de buena calidad 
-            <br>y tamaño. Le recomendamos usar estandares
-            de proporcion 4:3 y <br>color de fondo unificado
-          </h2>
-          <br>
-          <br>
-
-          <form>
-            <input type="file" multiple>
-            <p>Drag your files here or click in this area.</p>
-            <button type="submit">Upload</button>
-          </form>
-
-
-          <form class="">
-            <input 
-              class="border border-black"
-                type="file" 
-                id="avatar" 
-                name="avatar" 
-                accept="image/png, image/jpeg"
-              >
-            <img class="   bg-white-500    object-scale-down" src="@/assets/PopupImages/Trazado1127.png">
-            <p>
-              Arrastra los archivos aquí 
-            </p>
-            
-            <p>o</p>
-
-            <button type="submit">selecciona archivos</button>
-            
-              
-            
-          </form> -->
-          <!--Aqui terminan los primeros intentos de file input-->
-          
-          <!-- <div class="form-section">
-            <h4 class="form-subtitle">Fotos del producto</h4>
-
-            <p class="section-description text-left">
-              <strong>Importante: </strong>Las imágenes son el componente más importante de un buen ecommerce. Por favor cargue imágenes de buena calidad y tamaño. Le recomendamos usar estándares de proporción 4:3 y color de fondo unificado.
-            </p>
-
-            <AppInputFile
-              :multiple="true"
-              :images="true"
-              :files="pictures"
-              @update-files="setPictures($event)"
-              @delete-file="deleteFile($event)"
-            />
-          </div>  -->
-
-
           <h2 class="text-lg	font-semibold">
             Fotos del producto
           </h2>
@@ -444,54 +366,18 @@
           <br>
           <br>
 
-          <div>
-    
-
-<!-- Upload  -->
-<form id="file-upload-form" class="uploader " @click="ekUpload">
-  <input id="file-upload" type="file" name="fileUpload" accept="image/*" />
-
-  <label for="file-upload" id="file-drag">
-     <img id="file-image" src="#" alt="Preview" class="hidden">
-    <div id="start">
-       <i class="fa fa-download" aria-hidden="true"></i> 
-      <div>Select a file or drag here</div>
-      <div id="notimage" class="hidden">Please select an image</div>
-      <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
-    </div>
-    <div id="response" class="hidden">
-      <div id="messages"></div>
-      <progress class="progress" id="file-progress" value="0">
-        <span>0</span>%
-      </progress>
-    </div>
-  </label>
-</form>
-
-  </div>
-
-
-          <!-- <form id="fileInputArea" action="upload.php" method="POST" 
-            class="relative -mt-24 -ml-40 sm:-ml-64 
-            w-88 md:w-125 border-2 rounded-md" >
-            <input type="file" multiple class="-mt-40">
-            <p>Arrastra los archivos aqui.</p>
-            
-            
-            <button class="bg-white border text-progressBarBlue
-            border-[#005CAB] rounded-md  w-48 h-11 md:w-125 text-sm"
-              type="submit">Selecciona archivos</button>
-          </form> -->
-
-          <br>
-          <br>
           <div class="grid">
+            <FileInputLogic @emmit-image="saveImage"/>
+            <br>
+          <br>
+          
           <div class="grid grid-cols-2 items-center text-[#005CAB] font-medium">
-            <button @click="$emit('close')">
+            <button @click="$emit('close')" class="md:ml-44">
               CANCELAR
             </button>
             <button 
-                class="font-medium border rounded-md border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 " 
+                class="font-medium border rounded-md md:ml-44
+                 border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 " 
                 @click="$emit('showProgress')"
                 
               >
@@ -500,12 +386,9 @@
                 GUARDAR
             </button>
 
-          </div>
-          </div>
-
+          </div>     
           
-          
-
+          </div>               
 
         </form>
         <!--END FORM-->
@@ -516,205 +399,13 @@
 </template>
 
 <script >
-// import ClothesVariants from '@/components/ClothesVariants.vue';
-// import FoodVariants from '@/components/FoodVariants.vue';
-// import TechVariants from '@/components/TechVariants.vue';
-// import DefaultVariant from '@/components/DefaultVariant.vue';
+
 import useVuelidate from '@vuelidate/core'
 import { required, maxLength, integer, between, minLength } from '@vuelidate/validators'
 import AppInputFile from '@/components/AppInputFile.vue';
 import { computed, PropType } from 'vue';
 import { onMounted } from 'vue'
-// import FileInputLogic from '@/components/FileInputLogic.vue';
-
-// const rules = computed(() => {
-//   return {
-    
-//   }
-// });
-
-
-
-
-// onMounted(() => {
-//   document.getElementById(fileInputArea).ready(function(){
-//   document.getElementById('fileInputArea input').change(function () {
-//     document.getElementById('fileInputArea p').text(this.files.length + " file(s) selected");
-//   });
-// });
-// })
-
-
-
-
-
-function ekUpload(){
-  function Init() {
-
-    console.log("Upload Initialised");
-
-    var fileSelect    = document.getElementById('file-upload'),
-        fileDrag      = document.getElementById('file-drag'),
-        submitButton  = document.getElementById('submit-button');
-
-    fileSelect.addEventListener('change', fileSelectHandler, false);
-
-    // Is XHR2 available?
-    var xhr = new XMLHttpRequest();
-    if (xhr.upload) {
-      // File Drop
-      fileDrag.addEventListener('dragover', fileDragHover, false);
-      fileDrag.addEventListener('dragleave', fileDragHover, false);
-      fileDrag.addEventListener('drop', fileSelectHandler, false);
-    }
-  }
-
-  function fileDragHover(e) {
-    var fileDrag = document.getElementById('file-drag');
-
-    e.stopPropagation();
-    e.preventDefault();
-
-    fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
-  }
-
-  function fileSelectHandler(e) {
-    // Fetch FileList object
-    var files = e.target.files || e.dataTransfer.files;
-
-    // Cancel event and hover styling
-    fileDragHover(e);
-
-    // Process all File objects
-    for (var i = 0, f; f = files[i]; i++) {
-      parseFile(f);
-      uploadFile(f);
-    }
-  }
-
-  // Output
-  function output(msg) {
-    // Response
-    var m = document.getElementById('messages');
-    m.innerHTML = msg;
-  }
-
-  function parseFile(file) {
-
-    console.log(file.name);
-    output(
-      '<strong>' + encodeURI(file.name) + '</strong>'
-    );
-    
-    // var fileType = file.type;
-    // console.log(fileType);
-    var imageName = file.name;
-
-    var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
-    if (isGood) {
-      document.getElementById('start').classList.add("hidden");
-      document.getElementById('response').classList.remove("hidden");
-      document.getElementById('notimage').classList.add("hidden");
-      // Thumbnail Preview
-      document.getElementById('file-image').classList.remove("hidden");
-      document.getElementById('file-image').src = URL.createObjectURL(file);
-    }
-    else {
-      document.getElementById('file-image').classList.add("hidden");
-      document.getElementById('notimage').classList.remove("hidden");
-      document.getElementById('start').classList.remove("hidden");
-      document.getElementById('response').classList.add("hidden");
-      document.getElementById("file-upload-form").reset();
-    }
-  }
-
-  function setProgressMaxValue(e) {
-    var pBar = document.getElementById('file-progress');
-
-    if (e.lengthComputable) {
-      pBar.max = e.total;
-    }
-  }
-
-  function updateFileProgress(e) {
-    var pBar = document.getElementById('file-progress');
-
-    if (e.lengthComputable) {
-      pBar.value = e.loaded;
-    }
-  }
-
-  function uploadFile(file) {
-
-    var xhr = new XMLHttpRequest(),
-      fileInput = document.getElementById('class-roster-file'),
-      pBar = document.getElementById('file-progress'),
-      fileSizeLimit = 1024; // In MB
-    if (xhr.upload) {
-      // Check if file is less than x MB
-      if (file.size <= fileSizeLimit * 1024 * 1024) {
-        // Progress bar
-        pBar.style.display = 'inline';
-        xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
-        xhr.upload.addEventListener('progress', updateFileProgress, false);
-
-        // File received / failed
-        xhr.onreadystatechange = function(e) {
-          if (xhr.readyState == 4) {
-            // Everything is good!
-
-            // progress.className = (xhr.status == 200 ? "success" : "failure");
-            // document.location.reload(true);
-          }
-        };
-
-        // Start upload
-        xhr.open('POST', document.getElementById('file-upload-form').action, true);
-        xhr.setRequestHeader('X-File-Name', file.name);
-        xhr.setRequestHeader('X-File-Size', file.size);
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-        xhr.send(file);
-      } else {
-        output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
-      }
-    }
-  }
-
-  // Check for the various File API support.
-  if (window.File && window.FileList && window.FileReader) {
-    Init();
-  } else {
-    document.getElementById('file-drag').style.display = 'none';
-  }
-}
-
-
-function waitForElm(selector) {
-    return new Promise(resolve => {
-        if (document.querySelector(selector)) {
-            return resolve(document.querySelector(selector));
-        }
-
-        const observer = new MutationObserver(mutations => {
-            if (document.querySelector(selector)) {
-                resolve(document.querySelector(selector));
-                observer.disconnect();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    });
-}
-
-
-waitForElm('#file-upload').then((elm) => {
-  ekUpload();
-});
-
-
+import FileInputLogic from '@/components/FileInputLogic.vue';
 
 
 
@@ -735,7 +426,7 @@ export default {
   },
   components: {
     AppInputFile,
-    // FileInputLogic,
+    FileInputLogic,
   },
   data() {
     return {
@@ -757,7 +448,7 @@ export default {
         alto: "",
         ancho: "",
         profundo: "",
-        pictures: "",
+        pictures: this.childPicture,
       }
     };
   },
@@ -823,7 +514,9 @@ export default {
     }
   },
   methods: {
-
+    saveImage(){
+      const childPicture = document.getElementById('file-upload').value
+    },
     shouldAppendValidClass (field) {
       return !field.$invalid && field.$model && field.$dirty
     },
@@ -844,215 +537,9 @@ export default {
   }
 }
 
-
-
-
-
-    
-    
-
-
-    
-    // getCategory() {
-    //   return document.getElementById("categoria");
-    //   // var select = document.getElementById('categoria');
-    //   // var value = select.options[select.selectedIndex].value;
-    //   // return value
-    // }
-  
- 
-    // ClothesVariants,
-    // FoodVariants,
-    // TechVariants,
-    // DefaultVariant
-
-
 </script>
 
 <style scoped lang="scss">
- // Imports
-// 
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
-// Vars and Reset
-// 
-$theme:       #454cad;
-$dark-text:   #5f6982;
-
-// html,body,* { box-sizing: border-box; font-size: 16px;}
-// html,body   { height: 100%; text-align: center;}
-// body        { padding: 2rem; background: #f8f8f8;}
-
-// h2 {
-//   font-family: "Roboto", sans-serif;
-//   font-size: 26px;
-//   line-height: 1;
-//   color: $theme;
-//   margin-bottom: 0;
-// }
-// p {
-//   font-family: "Roboto", sans-serif;
-//   font-size: 18px;
-//   color: $dark-text;
-// }
-// Upload Demo
-// 
-.uploader {
-  display: block;
-  clear: both;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-
-  label {
-    float: left;
-    clear: both;
-    width: 100%;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    background: #fff;
-    border-radius: 7px;
-    border: 3px solid #eee;
-    transition: all .2s ease;
-    user-select: none;
-
-    &:hover {
-      border-color: $theme;
-    }
-    &.hover {
-      border: 3px solid $theme;
-      box-shadow: inset 0 0 0 6px #eee;
-      
-      #start {
-        i.fa {
-          transform: scale(0.8);
-          opacity: 0.3;
-        }
-      }
-    }
-  }
-
-  #start {
-    float: left;
-    clear: both;
-    width: 100%;
-    &.hidden {
-      display: none;
-    }
-    i.fa {
-      font-size: 50px;
-      margin-bottom: 1rem;
-      transition: all .2s ease-in-out;
-    }
-  }
-  #response {
-    float: left;
-    clear: both;
-    width: 100%;
-    &.hidden {
-      display: none;
-    }
-    #messages {
-      margin-bottom: .5rem;
-    }
-  }
-
-  #file-image {
-    display: inline;
-    margin: 0 auto .5rem auto;
-    width: auto;
-    height: auto;
-    max-width: 180px;
-    &.hidden {
-      display: none;
-    }
-  }
-  
-  #notimage {
-    display: block;
-    float: left;
-    clear: both;
-    width: 100%;
-    &.hidden {
-      display: none;
-    }
-  }
-
-  progress,
-  .progress {
-    // appearance: none;
-    display: inline;
-    clear: both;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 180px;
-    height: 8px;
-    border: 0;
-    border-radius: 4px;
-    background-color: #eee;
-    overflow: hidden;
-  }
-
-  .progress[value]::-webkit-progress-bar {
-    border-radius: 4px;
-    background-color: #eee;
-  }
-
-  .progress[value]::-webkit-progress-value {
-    background: linear-gradient(to right, darken($theme,8%) 0%, $theme 50%);
-    border-radius: 4px; 
-  }
-  .progress[value]::-moz-progress-bar {
-    background: linear-gradient(to right, darken($theme,8%) 0%, $theme 50%);
-    border-radius: 4px; 
-  }
-
-  input[type="file"] {
-    display: none;
-  }
-
-  // div {
-  //   margin: 0 0 .5rem 0;
-  //   color: $dark-text;
-  // }
-  .btn {
-    display: inline-block;
-    margin: .5rem .5rem 1rem .5rem;
-    clear: both;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    text-transform: initial;
-    border: none;
-    border-radius: .2rem;
-    outline: none;
-    padding: 0 1rem;
-    height: 36px;
-    line-height: 36px;
-    color: #fff;
-    transition: all 0.2s ease-in-out;
-    box-sizing: border-box;
-    background: $theme;
-    border-color: $theme;
-    cursor: pointer;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #fileInputArea{
 
@@ -1083,14 +570,8 @@ $dark-text:   #5f6982;
 }
 #fileInputArea button{
   margin: 0;
-
-
-
-
   margin-top: -20px;
   margin-left: -4px;
-
-
   transition: all .2s ease;
   outline: none;
 }
@@ -1101,7 +582,6 @@ $dark-text:   #5f6982;
 #fileInputArea button:active{
   border:0;
 }
-
 
 .modal-overlay {
   position: absolute;
@@ -1153,7 +633,6 @@ $dark-text:   #5f6982;
  ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 } 
-
 .close-button {
   border: none;
   display: inline-block;
