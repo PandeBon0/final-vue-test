@@ -24,64 +24,27 @@
           ref="productsListForm"
         >
         <!--BEGIN FORM-->
-          <div class="flex flex-col">
-            <label 
-              for="categoria" 
-              class=""
-            >
-              Categoría
-            </label>
-            <select 
-              id="categoria" 
-              v-model="formValues.categoria"
-              class="border rounded border-slate-300 h-15 text-slate-400"
-            >
-              <option value="">Seleccione una categoria</option>
-              <option value="alimentos">Alimentos</option>
-              <option value="tecnologia">Tecnologia</option>
-              <option value="vestimenta">Vestimenta</option>
-            </select>
-          </div>
+          <SelectorValidation  
+            :type="text"  
+            :id="categoria"
+            :blur="false"
+            :labelText="Categoría"
+          />
           <br>
-          <div class="flex flex-col">
-            <label for="titulo">
-              Titulo
-            </label>
-            <input 
-              type="text" 
-              id="titulo" 
-              class="border rounded border-slate-300 h-15" 
-              v-model="formValues.titulo"
-              @blur="v$.formValues.titulo.$touch()"
-              :class="{error: shouldAppendErrorClass(v$.formValues.titulo), valid: shouldAppendValidClass(v$.formValues.titulo) }"
-            >
-            <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
-              <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
-              <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
-            </div>
-            
-          </div>
+          <SelectorValidation  
+            :type="text"  
+            :id="titulo"
+            :blur="true"
+            :labelText="Título"
+            :validation="justText"
+          />
           <br>
-          <div class="flex flex-col">
-            <label 
-              for="descripcion" 
-              class=""
-            >
-              Descripcion
-            </label>
-            <input 
-              type="text" 
-              id="descripcion" 
-              class="border rounded border-slate-300 h-15"
-              v-model="formValues.descripcion" 
-              @blur="v$.formValues.descripcion.$touch()"
-              :class="{error: shouldAppendErrorClass(v$.formValues.descripcion), valid: shouldAppendValidClass(v$.formValues.descripcion) }"
-            >
-            
-            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error" 
-            class="text-red-500 italic">El campo es demasiado extenso</p>
-
-          </div>
+          <SelectorValidation  
+            :type="text"  
+            :id="descripcion"
+            :blur="false"
+            :labelText="Descripción"   
+          />
           <br>
           <div class="flex flex-col">
             <label 
@@ -92,7 +55,7 @@
             </label>
             <textarea 
               type="text" 
-              id="descripcionPro" 
+              id="" 
               class="border rounded border-slate-300 h-15"
               v-model="formValues.descripcionPro"
               @blur="v$.formValues.descripcionPro.$touch()" 
@@ -104,54 +67,36 @@
           </div>
           <br>
           <h2 class="text-xl font-bold">Variantes</h2>
-          <!--VARIANTS AND SELECTORS-->
           <br>
-          <!-- <DefaultVariant/> -->
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="talla">
-              Talla
-            </label>
-            <select 
-              id="talla" 
-              v-model="formValues.talla"
-            >
-              <option value=""> </option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-            </select>
-          </div>
+          <SelectorValidation  
+            :type="selector"  
+            :id="talla"
+            :blur="false"
+            :labelText="Talla" 
+            :option1="S"
+            :option2="M"
+            :option3="L"
+          />
           <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="color">
-              Color
-            </label>
-            <select 
-              id="color" 
-              v-model="formValues.color"
-            >
-              <option value=""></option>
-              <option value="rojo">Rojo</option>
-              <option value="amarillo">Amarillo</option>
-              <option value="verde">Verde</option>
-              <option value="azul">Azul</option>
-            </select>
-          </div>
+          <SelectorValidation  
+            :type="selector"  
+            :id="color"
+            :blur="false"
+            :labelText="Color"
+            :option1="Verde"
+            :option2="Amarillo"
+            :option3="Rojo"   
+          />
           <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="sabor" class="">
-              Sabor
-            </label>
-            <select 
-              id="sabor" 
-              v-model="formValues.sabor"
-            >
-              <option value=""></option>
-              <option value="dulce">Dulce</option>
-              <option value="salado">Salado</option>
-              <option value="acido">Acido</option>
-            </select>
-          </div>         
+          <SelectorValidation  
+            :type="selector"  
+            :id="sabor"
+            :blur="false"
+            :labelText="Sabor"
+            :option1="Salado"
+            :option2="Dulce"
+            :option3="Amargo"   
+          />     
           <div class="flex flex-row items-center -ml-16 justify-center">
             <img 
               class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
@@ -166,83 +111,39 @@
           </h2>
           <br>
           <div class="grid grid-cols-2">
-            <div class="flex flex-col">
-              <label for="cantidad">
-                Cantidad
-              </label>
-              <input 
-                type="number" 
-                v-model="formValues.cantidad"
-                @blur="v$.formValues.cantidad.$touch()" 
-                id="cantidad"
-                class="border rounded border-slate-300 h-8  w-10/12 mr-2 my-0.5 gap-4" 
-                :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
-              >
-              <div v-if="v$.formValues.cantidad.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.cantidad.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.cantidad.between">Ingrese un valor correcto</p>
-                
-              </div>
-              
-            </div>
-            <div class="flex flex-col">
-              <label for="sku">
-                SKU
-              </label>
-              <input 
-                type="number" 
-                v-model="formValues.sku" 
-                @blur="v$.formValues.sku.$touch()"
-                id="sku"
-                class="border rounded border-slate-300 h-8 mr-2 my-0.5 w-10/12 gap-4" 
-                :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
-              >
-              <div v-if="v$.formValues.sku.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.sku.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
-                
-              </div>
-            </div>
+            <SelectorValidation  
+              :type="number"  
+              :id="cantidad"
+              :blur="true"
+              :labelText="Cantidad"
+              :validation="between"   
+            />
+            <SelectorValidation  
+              :type="number"  
+              :id="sku"
+              :blur="true"
+              :labelText="SKU"
+              :validation="between"   
+            />
           </div>
           <div class="grid grid-cols-2">
-            <div class="flex flex-col">
-              <label for="moneda">
-                Moneda
-              </label>
-              <select 
-                id="moneda" 
-                v-model="formValues.moneda"
-                @blur="v$.formValues.moneda.$touch()"
-                class="border rounded border-slate-300 h-8  w-10/12 text-slate-400 mr-9 my-0.5 "
-              >
-                <option value="">Seleccione moneda</option>
-                <option value="peso">Pesos Colombianos</option>
-                <option value="dolar">Dolares</option>
-                <option value="euro">Euros</option>
-              </select>
-              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error" 
-              class="text-red-500 italic">El campo es obligatorio</p>
-            </div>
-            <div class="flex flex-col">
-              <label for="precio" >Precio</label>
-              <input 
-                type="number" 
-                v-model="formValues.precio" 
-                @blur="v$.formValues.precio.$touch()"
-                id="precio"
-                class="border rounded border-slate-300 h-8  w-10/12  mr-2 my-0.5  gap-4" 
-
-                :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
-              >
-              <div v-if="v$.formValues.precio.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.precio.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.precio.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
+            <SelectorValidation  
+              :type="selector"  
+              :id="moneda"
+              :blur="true"
+              :labelText="Moneda"
+              :validation="justText"
+              :option1="Dólar"
+              :option2="Peso"
+              :option3="Euro"   
+            />
+            <SelectorValidation  
+              :type="number"  
+              :id="precio"
+              :blur="true"
+              :labelText="Precio"
+              :validation="between"   
+            />
           </div>
           <br>
           <h2 class="text-lg	font-semibold">
@@ -406,6 +307,7 @@ import AppInputFile from '@/components/AppInputFile.vue';
 import { computed, PropType } from 'vue';
 import { onMounted } from 'vue'
 import FileInputLogic from '@/components/FileInputLogic.vue';
+import SelectorValidation from '@/formComponents/SelectorValidation.vue';
 
 
 
@@ -427,6 +329,7 @@ export default {
   components: {
     AppInputFile,
     FileInputLogic,
+    SelectorValidation
   },
   data() {
     return {
