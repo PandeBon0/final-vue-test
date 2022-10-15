@@ -38,7 +38,7 @@
            <h2 class="ml-12  mt-0 font-semibold col-span-3 md:col-span-6 xl:col-span-3 row-span-1 text-lg">
           Completa tu cuenta {{numericProgress}} 
         </h2>
-        <div class=" ml-10 xl:-ml-28 bg-bgGrey rounded-full 
+        <div class=" ml-10 xl:-ml-12 bg-bgGrey rounded-full xl:w-96 
          w-5/6 sm:w-29 md:w-103 xl:mt-0 mt-1 sm:-mt-4  col-span-3 md:col-span-6 xl:col-span-3 row-span-1 h-3.5">
           <div 
             id="progressBar" 

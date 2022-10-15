@@ -3,7 +3,9 @@
     class="modal-overlay  " 
     v-show="open"
   >
-    <div class="modal-content ">
+    <div class="modal-content max-w-2xl 
+    top-[500px]
+         ">
       <span 
         @click="$emit('close')" 
         class="close-button topright"
@@ -24,27 +26,89 @@
           ref="productsListForm"
         >
         <!--BEGIN FORM-->
-          <SelectorValidation  
-            :type="text"  
-            :id="categoria"
-            :blur="false"
-            :labelText="Categoría"
-          />
+          <div class="flex flex-col">
+            <label 
+              for="categoria" 
+              class=""
+            >
+              Categoría
+            </label>
+            <select 
+              id="categoria" 
+              v-model="formValues.categoria"
+              class="border rounded border-slate-300 h-15 text-slate-400"
+            >
+              <option value="">Seleccione una categoria</option>
+              <option value="alimentos">Alimentos</option>
+              <option value="tecnologia">Tecnologia</option>
+              <option value="vestimenta">Vestimenta</option>
+            </select>
+          </div>
           <br>
-          <SelectorValidation  
-            :type="text"  
-            :id="titulo"
-            :blur="true"
-            :labelText="Título"
-            :validation="justText"
+            <div class="flex flex-col">
+            <label for="titulo">
+              Titulo
+            </label>
+            <input 
+              type="text" 
+              id="titulo" 
+              class="border rounded border-slate-300 h-15" 
+              v-model="formValues.titulo"
+              @blur="v$.formValues.titulo.$touch()"
+             
+            >
+           
+            <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
+              <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
+              <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
+            </div>
+            
+          </div>  
+ <!-- :class="{error: shouldAppendErrorClass(v$.formValues.titulo), valid: shouldAppendValidClass(v$.formValues.titulo) }" -->
+
+
+          <!-- <TextValidation
+            id="titulo"
+            label-text="Titulo"
+            input-type="text"  
+            v-model="formValues.titulo"
+            @blur="v$.formValues.titulo.$touch()"
           />
+          <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
+            <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
+            <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
+          </div>  -->
+
+
+            <TituloComponent 
+              v-model="formValues.comida"
+              @newPropertyName="updateTitulo()"
+            />
+
+
+
+
           <br>
-          <SelectorValidation  
-            :type="text"  
-            :id="descripcion"
-            :blur="false"
-            :labelText="Descripción"   
-          />
+          <div class="flex flex-col">
+            <label 
+              for="descripcion" 
+              class=""
+            >
+              Descripcion
+            </label>
+            <input 
+              type="text" 
+              id="descripcion" 
+              class="border rounded border-slate-300 h-15"
+              v-model="formValues.descripcion" 
+              @blur="v$.formValues.descripcion.$touch()"
+              :class="{error: shouldAppendErrorClass(v$.formValues.descripcion), valid: shouldAppendValidClass(v$.formValues.descripcion) }"
+            >
+            
+            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error" 
+            class="text-red-500 italic">El campo es demasiado extenso</p>
+
+          </div>
           <br>
           <div class="flex flex-col">
             <label 
@@ -55,7 +119,7 @@
             </label>
             <textarea 
               type="text" 
-              id="" 
+              id="descripcionPro" 
               class="border rounded border-slate-300 h-15"
               v-model="formValues.descripcionPro"
               @blur="v$.formValues.descripcionPro.$touch()" 
@@ -67,36 +131,54 @@
           </div>
           <br>
           <h2 class="text-xl font-bold">Variantes</h2>
+          <!--VARIANTS AND SELECTORS-->
           <br>
-          <SelectorValidation  
-            :type="selector"  
-            :id="talla"
-            :blur="false"
-            :labelText="Talla" 
-            :option1="S"
-            :option2="M"
-            :option3="L"
-          />
+          <!-- <DefaultVariant/> -->
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
+            <label for="talla">
+              Talla
+            </label>
+            <select 
+              id="talla" 
+              v-model="formValues.talla"
+            >
+              <option value=""> </option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+            </select>
+          </div>
           <br>
-          <SelectorValidation  
-            :type="selector"  
-            :id="color"
-            :blur="false"
-            :labelText="Color"
-            :option1="Verde"
-            :option2="Amarillo"
-            :option3="Rojo"   
-          />
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
+            <label for="color">
+              Color
+            </label>
+            <select 
+              id="color" 
+              v-model="formValues.color"
+            >
+              <option value=""></option>
+              <option value="rojo">Rojo</option>
+              <option value="amarillo">Amarillo</option>
+              <option value="verde">Verde</option>
+              <option value="azul">Azul</option>
+            </select>
+          </div>
           <br>
-          <SelectorValidation  
-            :type="selector"  
-            :id="sabor"
-            :blur="false"
-            :labelText="Sabor"
-            :option1="Salado"
-            :option2="Dulce"
-            :option3="Amargo"   
-          />     
+          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
+            <label for="sabor" class="">
+              Sabor
+            </label>
+            <select 
+              id="sabor" 
+              v-model="formValues.sabor"
+            >
+              <option value=""></option>
+              <option value="dulce">Dulce</option>
+              <option value="salado">Salado</option>
+              <option value="acido">Acido</option>
+            </select>
+          </div>         
           <div class="flex flex-row items-center -ml-16 justify-center">
             <img 
               class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
@@ -111,39 +193,83 @@
           </h2>
           <br>
           <div class="grid grid-cols-2">
-            <SelectorValidation  
-              :type="number"  
-              :id="cantidad"
-              :blur="true"
-              :labelText="Cantidad"
-              :validation="between"   
-            />
-            <SelectorValidation  
-              :type="number"  
-              :id="sku"
-              :blur="true"
-              :labelText="SKU"
-              :validation="between"   
-            />
+            <div class="flex flex-col">
+              <label for="cantidad">
+                Cantidad
+              </label>
+              <input 
+                type="number" 
+                v-model="formValues.cantidad"
+                @blur="v$.formValues.cantidad.$touch()" 
+                id="cantidad"
+                class="border rounded border-slate-300 h-8  w-10/12 mr-2 my-0.5 gap-4" 
+                :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
+              >
+              <div v-if="v$.formValues.cantidad.$error" class="text-red-500 italic">
+                <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.cantidad.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.cantidad.between">Ingrese un valor correcto</p>
+                
+              </div>
+              
+            </div>
+            <div class="flex flex-col">
+              <label for="sku">
+                SKU
+              </label>
+              <input 
+                type="number" 
+                v-model="formValues.sku" 
+                @blur="v$.formValues.sku.$touch()"
+                id="sku"
+                class="border rounded border-slate-300 h-8 mr-2 my-0.5 w-10/12 gap-4" 
+                :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
+              >
+              <div v-if="v$.formValues.sku.$error" class="text-red-500 italic">
+                <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.sku.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
+                
+              </div>
+            </div>
           </div>
           <div class="grid grid-cols-2">
-            <SelectorValidation  
-              :type="selector"  
-              :id="moneda"
-              :blur="true"
-              :labelText="Moneda"
-              :validation="justText"
-              :option1="Dólar"
-              :option2="Peso"
-              :option3="Euro"   
-            />
-            <SelectorValidation  
-              :type="number"  
-              :id="precio"
-              :blur="true"
-              :labelText="Precio"
-              :validation="between"   
-            />
+            <div class="flex flex-col">
+              <label for="moneda">
+                Moneda
+              </label>
+              <select 
+                id="moneda" 
+                v-model="formValues.moneda"
+                @blur="v$.formValues.moneda.$touch()"
+                class="border rounded border-slate-300 h-8  w-10/12 text-slate-400 mr-9 my-0.5 "
+              >
+                <option value="">Seleccione moneda</option>
+                <option value="peso">Pesos Colombianos</option>
+                <option value="dolar">Dolares</option>
+                <option value="euro">Euros</option>
+              </select>
+              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error" 
+              class="text-red-500 italic">El campo es obligatorio</p>
+            </div>
+            <div class="flex flex-col">
+              <label for="precio" >Precio</label>
+              <input 
+                type="number" 
+                v-model="formValues.precio" 
+                @blur="v$.formValues.precio.$touch()"
+                id="precio"
+                class="border rounded border-slate-300 h-8  w-10/12  mr-2 my-0.5  gap-4" 
+
+                :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
+              >
+              <div v-if="v$.formValues.precio.$error" class="text-red-500 italic">
+                <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
+                <p v-else-if="v$.formValues.precio.integer">El campo debe ser numerico</p>
+                <p v-else-if="v$.formValues.precio.between">Ingrese un valor correcto</p>
+                
+              </div>
+            </div>
           </div>
           <br>
           <h2 class="text-lg	font-semibold">
@@ -273,11 +399,11 @@
           <br>
           
           <div class="grid grid-cols-2 items-center text-[#005CAB] font-medium">
-            <button @click="$emit('close')" class="md:ml-44">
+            <button @click="$emit('close')" class="md:ml-20">
               CANCELAR
             </button>
             <button 
-                class="font-medium border rounded-md md:ml-44
+                class="font-medium border rounded-md md:ml-16
                  border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 " 
                 @click="$emit('showProgress')"
                 
@@ -290,7 +416,9 @@
           </div>     
           
           </div>               
-
+          <br>
+          <br>
+          <br class="visible sm:invisible">
         </form>
         <!--END FORM-->
       </div>
@@ -300,19 +428,14 @@
 </template>
 
 <script >
-
 import useVuelidate from '@vuelidate/core'
 import { required, maxLength, integer, between, minLength } from '@vuelidate/validators'
 import AppInputFile from '@/components/AppInputFile.vue';
 import { computed, PropType } from 'vue';
 import { onMounted } from 'vue'
 import FileInputLogic from '@/components/FileInputLogic.vue';
-import SelectorValidation from '@/formComponents/SelectorValidation.vue';
-
-
-
-
-
+import TextValidation from '@/formComponents/TextValidation.vue';
+import TituloComponent from '@/formComponents/TituloComponent.vue';
 export default {
   name: "PageModal",
   visibility: "invisible",
@@ -329,13 +452,15 @@ export default {
   components: {
     AppInputFile,
     FileInputLogic,
-    SelectorValidation
-  },
+    TextValidation,
+    TituloComponent
+},
   data() {
     return {
       fechas: "",
       numericProgress: "(2/8)",
       formValues: {
+        comida: "",
         titulo: "",
         descripcion: "",
         descripcionPro: "",
@@ -412,11 +537,15 @@ export default {
         // pictures: { 
         //   required, 
         //   minLength: minLength(1), 
-        //   }
+        // }
       }
     }
   },
   methods: {
+    updateTitulo (value) {
+       this.formValues.comida = value;
+      
+    },
     saveImage(){
       const childPicture = document.getElementById('file-upload').value
     },
@@ -439,13 +568,10 @@ export default {
     },
   }
 }
-
 </script>
 
 <style scoped lang="scss">
-
 #fileInputArea{
-
   top: 50%;
   left: 50%;
   /* margin-top: -100px; */
@@ -464,7 +590,6 @@ export default {
 }
 #fileInputArea input{
   position: absolute;
-
   padding: 0;
   width: 100%;
   height: 100%;
@@ -485,9 +610,8 @@ export default {
 #fileInputArea button:active{
   border:0;
 }
-
 .modal-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -499,9 +623,7 @@ export default {
   height: 100%;
   overflow:auto;
   /* overflow: hidden; Hide scrollbars */
-
 }
-
 .modal-content {
   /* font-family: "Fondamento", cursive; */
   padding: 20px;
@@ -521,7 +643,6 @@ export default {
   /*display: none;
   visibility: hidden; */
 } 
-
 /* Track */
  ::-webkit-scrollbar-track {
   background: #f1f1f1; 
@@ -531,7 +652,6 @@ export default {
  ::-webkit-scrollbar-thumb {
   background: #888; 
 } 
-
 /* Handle on hover */
  ::-webkit-scrollbar-thumb:hover {
   background: #555; 
@@ -549,13 +669,11 @@ export default {
   cursor: pointer;
   white-space: nowrap
 }
-
 .topright {
   position: absolute;
   right: 0;
   top: 0
 }
-
 .btn-green {
     padding: 15px 30px;
     border-radius: 5px;
@@ -563,58 +681,46 @@ export default {
     display: inline-block;
     outline: 0;
 }
-
  .btn-green:hover {
     transition: all 0.4s ease;
 }
-
 @media (min-width: 240px) and (max-width: 720px) {
     .btn-green {
         padding: 10px 20px;
     }
 }
-
  .btn-green:disabled {
     cursor: default;
 }
-
 .btn-green:disabled:hover {
     cursor: default;
     color: white;
 }
-
 .btn-green {
     color: white;
     background: #57AD8D;
 }
-
 .btn-green:hover:not(:disabled):not(.btn-disabled) {
     color: white;
     background: #4e9c7f;
 }
-
 .btn-green-outlined {
     color: #57AD8D;
     box-shadow: inset 0px 0px 0px 1.6px #57AD8D;
 }
-
 .btn-green-outlined:hover {
     color: white;
     background: #57AD8D;
 }
-
 .btn-green {
     color: white;
     background: #57AD8D;
 }
-
 .btn-green:hover:not(:disabled):not(.btn-disabled) {
     color: white;
     background: #4e9c7f;
 }
-
 .btn-green-outlined {
     opacity: 0.8;
 }
-
 </style>
