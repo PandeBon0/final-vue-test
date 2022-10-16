@@ -4,7 +4,7 @@
     v-show="open"
   >
     <div class="modal-content max-w-2xl 
-    top-[500px]
+    top-[500px] bottom-[500px]
          ">
       <span 
         @click="$emit('close')" 
@@ -64,28 +64,36 @@
             </div>
             
           </div>  
- <!-- :class="{error: shouldAppendErrorClass(v$.formValues.titulo), valid: shouldAppendValidClass(v$.formValues.titulo) }" -->
+ 
 
+              <TextComponent
+                id="textComponent"
+                label-text="Text Component"
+                max-length="500"
+                v-model="formValues.textComponent"
+              />
 
-          <!-- <TextValidation
-            id="titulo"
-            label-text="Titulo"
-            input-type="text"  
-            v-model="formValues.titulo"
-            @blur="v$.formValues.titulo.$touch()"
-          />
-          <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
-            <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
-            <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
-          </div>  -->
-
-
-            <TituloComponent 
-              v-model="formValues.comida"
-              @newPropertyName="updateTitulo()"
-            />
-
-
+              <TextAreaComponent
+                id="textAreaComponent"
+                label-text="Text Area Component"
+                max-length="50"
+                v-model="formValues.textAreaComponent"
+              
+              />
+              <NumberComponent
+                id="numberComponent"
+                label-text="Number Component"
+                max-length="20"
+                v-model="formValues.numberComponent"
+              />
+              <SelectorComponent
+                id="SelectorComponent"
+                label-text="Selector Component"
+                option1="yaju"
+                option2="comida"
+                option3="cachichurris"
+                v-model="formValues.SelectorComponent"
+              />
 
 
           <br>
@@ -123,11 +131,14 @@
               class="border rounded border-slate-300 h-15"
               v-model="formValues.descripcionPro"
               @blur="v$.formValues.descripcionPro.$touch()" 
-              :class="{error: shouldAppendErrorClass(v$.formValues.descripcionPro), valid: shouldAppendValidClass(v$.formValues.descripcionPro) }"
             >
             </textarea>
-            <p v-if="v$.formValues.descripcionPro.maxLength && v$.formValues.descripcionPro.$error" 
-            class="text-red-500 italic">El campo es demasiado extenso</p>
+            <p v-if="v$.formValues.descripcionPro.maxLength 
+              && v$.formValues.descripcionPro.$error" 
+              class="text-red-500 italic"
+            >
+              El campo es demasiado extenso
+            </p>
           </div>
           <br>
           <h2 class="text-xl font-bold">Variantes</h2>
@@ -434,9 +445,14 @@ import AppInputFile from '@/components/AppInputFile.vue';
 import { computed, PropType } from 'vue';
 import { onMounted } from 'vue'
 import FileInputLogic from '@/components/FileInputLogic.vue';
-import TextValidation from '@/formComponents/TextValidation.vue';
-import TituloComponent from '@/formComponents/TituloComponent.vue';
+import TextValidation from '@/recycleBin/TextValidation.vue';
+import TituloComponent from '@/recycleBin/TituloComponent.vue';
+import TextComponent from '@/formComponents/TextComponent.vue';
+import TextAreaComponent from '@/formComponents/TextAreaComponent.vue';
+import NumberComponent from '@/formComponents/NumberComponent.vue';
+import SelectorComponent from '../formComponents/SelectorComponent.vue';
 export default {
+
   name: "PageModal",
   visibility: "invisible",
   props: {
@@ -453,13 +469,22 @@ export default {
     AppInputFile,
     FileInputLogic,
     TextValidation,
-    TituloComponent
+    TituloComponent,
+    TextComponent,
+    TextAreaComponent,
+    NumberComponent,
+    SelectorComponent
 },
   data() {
     return {
+    
       fechas: "",
       numericProgress: "(2/8)",
       formValues: {
+        textComponent: String | Number,
+        textAreaComponent: String | Number,
+        numberComponent: Number,
+        SelectorComponent: String,
         comida: "",
         titulo: "",
         descripcion: "",
