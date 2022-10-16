@@ -4,8 +4,8 @@
     v-show="open"
   >
     <div class="modal-content max-w-2xl 
-    top-[500px] bottom-[500px]
-         ">
+      top-[570px] bottom-[500px]
+    ">
       <span 
         @click="$emit('close')" 
         class="close-button topright"
@@ -25,390 +25,200 @@
           @submit="submitForm" 
           ref="productsListForm"
         >
+
+        <!-- Helpers
+        <TextInput
+          id="textInput"
+          label-text="Text Input"
+          max-length="500"
+          v-model="formValues.textInput"
+        />
+        <TextAreaInput
+          id="TextAreaInput"
+          label-text="Text Area Input"
+          max-length="50"
+          v-model="formValues.TextAreaInput"
+        />
+        <NumberInput
+          id="NumberInput"
+          label-text="Number Input"
+          max-length="20"
+          v-model="formValues.NumberInput"
+        />
+        <SelectorInput
+          id="SelectorInput"
+          label-text="Selector Input"
+          option1="option1"
+          option2="option2"
+          option3="option3"
+          v-model="formValues.SelectorInput"
+        />
+        <NumberUnits
+          id="NumberUnits"
+          label-text="Number Units"
+          max-length="20"
+          units="Grs"
+          v-model="formValues.NumberUnits"
+        /> -->
+
         <!--BEGIN FORM-->
-          <div class="flex flex-col">
-            <label 
-              for="categoria" 
-              class=""
-            >
-              Categoría
-            </label>
-            <select 
-              id="categoria" 
-              v-model="formValues.categoria"
-              class="border rounded border-slate-300 h-15 text-slate-400"
-            >
-              <option value="">Seleccione una categoria</option>
-              <option value="alimentos">Alimentos</option>
-              <option value="tecnologia">Tecnologia</option>
-              <option value="vestimenta">Vestimenta</option>
-            </select>
-          </div>
-          <br>
-            <div class="flex flex-col">
-            <label for="titulo">
-              Titulo
-            </label>
-            <input 
-              type="text" 
-              id="titulo" 
-              class="border rounded border-slate-300 h-15" 
-              v-model="formValues.titulo"
-              @blur="v$.formValues.titulo.$touch()"
-             
-            >
-           
-            <div v-if="v$.formValues.titulo.$error" class="text-red-500 italic">
-              <p v-if="v$.formValues.titulo.required">El campo es obligatorio</p>
-              <p v-else-if="v$.formValues.titulo.maxLength">El campo es demasiado extenso</p>
-            </div>
-            
-          </div>  
- 
-
-              <TextComponent
-                id="textComponent"
-                label-text="Text Component"
-                max-length="500"
-                v-model="formValues.textComponent"
-              />
-
-              <TextAreaComponent
-                id="textAreaComponent"
-                label-text="Text Area Component"
-                max-length="50"
-                v-model="formValues.textAreaComponent"
-              
-              />
-              <NumberComponent
-                id="numberComponent"
-                label-text="Number Component"
-                max-length="20"
-                v-model="formValues.numberComponent"
-              />
-              <SelectorComponent
-                id="SelectorComponent"
-                label-text="Selector Component"
-                option1="yaju"
-                option2="comida"
-                option3="cachichurris"
-                v-model="formValues.SelectorComponent"
-              />
-
-
-          <br>
-          <div class="flex flex-col">
-            <label 
-              for="descripcion" 
-              class=""
-            >
-              Descripcion
-            </label>
-            <input 
-              type="text" 
-              id="descripcion" 
-              class="border rounded border-slate-300 h-15"
-              v-model="formValues.descripcion" 
-              @blur="v$.formValues.descripcion.$touch()"
-              :class="{error: shouldAppendErrorClass(v$.formValues.descripcion), valid: shouldAppendValidClass(v$.formValues.descripcion) }"
-            >
-            
-            <p v-if="v$.formValues.descripcion.maxLength && v$.formValues.descripcion.$error" 
-            class="text-red-500 italic">El campo es demasiado extenso</p>
-
-          </div>
-          <br>
-          <div class="flex flex-col">
-            <label 
-              for="descripcionPro" 
-              class=""
-            >
-              Descripcion pro
-            </label>
-            <textarea 
-              type="text" 
-              id="descripcionPro" 
-              class="border rounded border-slate-300 h-15"
-              v-model="formValues.descripcionPro"
-              @blur="v$.formValues.descripcionPro.$touch()" 
-            >
-            </textarea>
-            <p v-if="v$.formValues.descripcionPro.maxLength 
-              && v$.formValues.descripcionPro.$error" 
-              class="text-red-500 italic"
-            >
-              El campo es demasiado extenso
-            </p>
-          </div>
-          <br>
-          <h2 class="text-xl font-bold">Variantes</h2>
-          <!--VARIANTS AND SELECTORS-->
-          <br>
-          <!-- <DefaultVariant/> -->
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="talla">
-              Talla
-            </label>
-            <select 
-              id="talla" 
-              v-model="formValues.talla"
-            >
-              <option value=""> </option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-            </select>
-          </div>
-          <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="color">
-              Color
-            </label>
-            <select 
-              id="color" 
-              v-model="formValues.color"
-            >
-              <option value=""></option>
-              <option value="rojo">Rojo</option>
-              <option value="amarillo">Amarillo</option>
-              <option value="verde">Verde</option>
-              <option value="azul">Azul</option>
-            </select>
-          </div>
-          <br>
-          <div class="grid grid-cols-2 border border-transparent border-b-slate-400 w-11/12 ml-5">
-            <label for="sabor" class="">
-              Sabor
-            </label>
-            <select 
-              id="sabor" 
-              v-model="formValues.sabor"
-            >
-              <option value=""></option>
-              <option value="dulce">Dulce</option>
-              <option value="salado">Salado</option>
-              <option value="acido">Acido</option>
-            </select>
-          </div>         
-          <div class="flex flex-row items-center -ml-16 justify-center">
-            <img 
-              class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
-              src="@/assets/PopupImages/mas.png"
-            >
-            <h2 class="text-[#005CAB] font-medium	-ml-6">
-              Agregar grupo de Toppings
-            </h2>
-          </div>
-          <h2 class="text-lg	font-semibold">
-            Precio y disponibilidad
+        <SelectorInput
+          id="categoria"
+          label-text="Categoría"
+          option1="Alimentos"
+          option2="Tecnologia"
+          option3="Vestimenta"
+          v-model="formValues.categoria"
+        />
+        <br>
+        <TextInput
+          id="titulo"
+          label-text="Titulo"
+          max-length="50"
+          v-model="formValues.titulo"
+        />
+        <br>
+        <TextInput
+          id="descripcion"
+          label-text="Descripcion"
+          max-length="50"
+          v-model="formValues.descripcion"
+        />
+        <br>
+        <TextAreaInput
+          id="descripcionPro"
+          label-text="Descripcion pro"
+          max-length="100"
+          v-model="formValues.descripcionPro"
+        />
+        <br>
+        <h2 class="text-xl font-bold">Variantes</h2>
+        <!--VARIANTS AND SELECTORS-->
+        <br>
+        <SelectorInput
+          id="talla"
+          label-text="Talla"
+          option1="S"
+          option2="M"
+          option3="L"
+          v-model="formValues.talla"
+        />
+        <br>
+        <SelectorInput
+          id="color"
+          label-text="Color"
+          option1="Rojo"
+          option2="Amarillo"
+          option3="Verde"
+          v-model="formValues.color"
+        />
+        <br>
+        <SelectorInput
+          id="sabor"
+          label-text="Sabor"
+          option1="Dulce"
+          option2="Salado"
+          option3="Acido"
+          v-model="formValues.sabor"
+        />
+        <br>        
+        <div class="flex flex-row items-center -ml-16 justify-center">
+          <img 
+            class="bg-white-500 p-6   ml-10 mr-3 h-13 object-none" 
+            src="@/assets/PopupImages/mas.png"
+          >
+          <h2 class="text-[#005CAB] font-medium	-ml-6">
+            Agregar grupo de Toppings
           </h2>
+        </div>
+        <h2 class="text-lg	font-semibold">
+          Precio y disponibilidad
+        </h2>
+        <br>
+        <div class="grid grid-cols-2">
+          <NumberInput
+            id="cantidad"
+            label-text="Cantidad"
+            max-length="12"
+            v-model="formValues.cantidad"
+          />
+          <NumberInput
+            id="sku"
+            label-text="SKU"
+            max-length="12"
+            v-model="formValues.sku"
+          />   
+        </div>
+        <div class="grid grid-cols-2">
+          <SelectorInput
+            id="moneda"
+            label-text="Moneda"
+            option1="Pesos"
+            option2="Dolares"
+            option3="Euros"
+            v-model="formValues.moneda"
+          />
+          <NumberInput
+            id="precio"
+            label-text="Precio"
+            max-length="12"
+            v-model="formValues.precio"
+          /> 
+        </div>
+        <br>
+        <h2 class="text-lg	font-semibold">
+          Dimensiones
+        </h2>
+        <br>
+        <div class="flex flex-row">
+          <NumberUnits
+            id="peso"
+            label-text="Peso"
+            max-length="10"
+            units="Grs"
+            v-model="formValues.peso"
+          />
+          <NumberUnits
+            id="alto"
+            label-text="Alto"
+            max-length="10"
+            units="cm"
+            v-model="formValues.alto"
+          />
+          <NumberUnits
+            id="ancho"
+            label-text="Ancho"
+            max-length="10"
+            units="cm"
+            v-model="formValues.ancho"
+          /> 
+          <NumberUnits
+            id="profundo"
+            label-text="Profundo"
+            max-length="10"
+            units="cm"
+            v-model="formValues.profundo"
+          />
           <br>
-          <div class="grid grid-cols-2">
-            <div class="flex flex-col">
-              <label for="cantidad">
-                Cantidad
-              </label>
-              <input 
-                type="number" 
-                v-model="formValues.cantidad"
-                @blur="v$.formValues.cantidad.$touch()" 
-                id="cantidad"
-                class="border rounded border-slate-300 h-8  w-10/12 mr-2 my-0.5 gap-4" 
-                :class="{error: shouldAppendErrorClass(v$.formValues.cantidad), valid: shouldAppendValidClass(v$.formValues.cantidad) }"
-              >
-              <div v-if="v$.formValues.cantidad.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.cantidad.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.cantidad.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.cantidad.between">Ingrese un valor correcto</p>
-                
-              </div>
-              
-            </div>
-            <div class="flex flex-col">
-              <label for="sku">
-                SKU
-              </label>
-              <input 
-                type="number" 
-                v-model="formValues.sku" 
-                @blur="v$.formValues.sku.$touch()"
-                id="sku"
-                class="border rounded border-slate-300 h-8 mr-2 my-0.5 w-10/12 gap-4" 
-                :class="{error: shouldAppendErrorClass(v$.formValues.sku), valid: shouldAppendValidClass(v$.formValues.sku) }"
-              >
-              <div v-if="v$.formValues.sku.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.sku.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.sku.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.sku.maxLength">El tamaño del campo es excesivo</p>
-                
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2">
-            <div class="flex flex-col">
-              <label for="moneda">
-                Moneda
-              </label>
-              <select 
-                id="moneda" 
-                v-model="formValues.moneda"
-                @blur="v$.formValues.moneda.$touch()"
-                class="border rounded border-slate-300 h-8  w-10/12 text-slate-400 mr-9 my-0.5 "
-              >
-                <option value="">Seleccione moneda</option>
-                <option value="peso">Pesos Colombianos</option>
-                <option value="dolar">Dolares</option>
-                <option value="euro">Euros</option>
-              </select>
-              <p v-if="v$.formValues.moneda.required && v$.formValues.moneda.$error" 
-              class="text-red-500 italic">El campo es obligatorio</p>
-            </div>
-            <div class="flex flex-col">
-              <label for="precio" >Precio</label>
-              <input 
-                type="number" 
-                v-model="formValues.precio" 
-                @blur="v$.formValues.precio.$touch()"
-                id="precio"
-                class="border rounded border-slate-300 h-8  w-10/12  mr-2 my-0.5  gap-4" 
-
-                :class="{error: shouldAppendErrorClass(v$.formValues.precio), valid: shouldAppendValidClass(v$.formValues.precio) }"
-              >
-              <div v-if="v$.formValues.precio.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.precio.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.precio.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.precio.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
-          </div>
-          <br>
-          <h2 class="text-lg	font-semibold">
-            Dimensiones
-          </h2>
-          <br>
-          <div class="flex flex-row">
-            <div class="flex flex-col">
-              <h2 class="semibold">
-                Peso
-              </h2>
-              <div class="flex flex-row items-center">
-                <input 
-                  type="number" 
-                  v-model="formValues.peso" 
-                  @blur="v$.formValues.peso.$touch()"
-                  id="peso"
-                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
-                  :class="{error: shouldAppendErrorClass(v$.formValues.peso), valid: shouldAppendValidClass(v$.formValues.peso) }"
-                >
-                <h2 class="mx-1">
-                  Grs
-                </h2>
-              </div>
-              <div v-if="v$.formValues.peso.$error"  class="text-red-500 italic">
-                <p v-if="v$.formValues.peso.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.peso.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.peso.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <h2 class="semibold">Alto</h2>
-              <div class="flex flex-row items-center">
-                <input 
-                  type="number" 
-                  v-model="formValues.alto"
-                  @blur="v$.formValues.alto.$touch()" 
-                  id="alto"
-                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
-                  
-                  :class="{error: shouldAppendErrorClass(v$.formValues.alto), valid: shouldAppendValidClass(v$.formValues.alto) }"         
-                >
-                <h2 class="mx-1">
-                  cm
-                </h2>
-              </div>
-              <div v-if="v$.formValues.alto.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.alto.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.alto.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.alto.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <h2 class="semibold">
-                Ancho
-              </h2>
-              <div class="flex flex-row items-center">
-                <input 
-                  type="number" 
-                  v-model="formValues.ancho" 
-                  @blur="v$.formValues.ancho.$touch()"
-                  id="ancho"
-                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
-                 
-                  :class="{error: shouldAppendErrorClass(v$.formValues.ancho), valid: shouldAppendValidClass(v$.formValues.ancho) }"
-                >
-                <h2 class="mx-1">
-                  cm
-                </h2>
-              </div>
-              <div v-if="v$.formValues.ancho.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.ancho.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.ancho.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.ancho.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <h2 class="semibold">
-                Profundo
-              </h2>
-              <div class="flex flex-row items-center">
-                <input 
-                  type="number" 
-                  v-model="v$.formValues.profundo.$model" 
-                  @blur="v$.formValues.profundo.$touch()"
-                  id="profundo"
-                  class="border rounded border-slate-300 h-8 w-6/12 my-0.5 mr-2 gap-4" 
-           
-                  :class="{error: shouldAppendErrorClass(v$.formValues.profundo), valid: shouldAppendValidClass(v$.formValues.profundo) }"
-                >
-                <h2 class="mx-1">
-                  cm
-                </h2>
-                
-              </div>
-              <div v-if="v$.formValues.profundo.$error" class="text-red-500 italic">
-                <p v-if="v$.formValues.profundo.required">El campo es obligatorio</p>
-                <p v-else-if="v$.formValues.profundo.integer">El campo debe ser numerico</p>
-                <p v-else-if="v$.formValues.profundo.between">Ingrese un valor correcto</p>
-                
-              </div>
-            </div>
-            <br>
-          </div>
+        </div>
+        <br>
+        <br>
+        <h2 class="text-lg	font-semibold">
+          Fotos del producto
+        </h2>
+        <br>
+        <h2 class="ml-10 mb-20"> 
+          <b>Importante: </b>Las imagenes son el componente mas importante de 
+          un buen e-commerce. Por favor cargue imagenes de buena calidad 
+          y tamaño. Le recomendamos usar estandares
+          de proporcion 4:3 y color de fondo unificado
+        </h2>
+        <br>
+        <br>
+        <div class="grid">
+          <FileInputLogic @emmit-image="saveImage"/>
           <br>
           <br>
-
-          <h2 class="text-lg	font-semibold">
-            Fotos del producto
-          </h2>
-          <br>
-          <h2 class="ml-10 mb-20"> 
-            <b>Importante: </b>Las imagenes son el componente mas importante de 
-            un buen e-commerce. Por favor cargue imagenes de buena calidad 
-            y tamaño. Le recomendamos usar estandares
-            de proporcion 4:3 y color de fondo unificado
-          </h2>
-          <br>
-          <br>
-
-          <div class="grid">
-            <FileInputLogic @emmit-image="saveImage"/>
-            <br>
-          <br>
-          
           <div class="grid grid-cols-2 items-center text-[#005CAB] font-medium">
             <button @click="$emit('close')" class="md:ml-20">
               CANCELAR
@@ -416,45 +226,35 @@
             <button 
                 class="font-medium border rounded-md md:ml-16
                  border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 " 
-                @click="$emit('showProgress')"
-                
+                @click="$emit('showProgress')" 
               >
-              <!-- :disabled="v$.formValues.$invalid" esto iba adentro del button tag hay que ver como mostrar 
-              el boton de submit dehabilitado con CSS Tailwind-->
                 GUARDAR
             </button>
-
           </div>     
-          
-          </div>               
-          <br>
-          <br>
-          <br class="visible sm:invisible">
+        </div>               
+        <br>
+        <br>
+        <br class="visible sm:invisible">
         </form>
         <!--END FORM-->
       </div>
-      
     </div>
   </div>
 </template>
 
-<script >
+<script>
 import useVuelidate from '@vuelidate/core'
 import { required, maxLength, integer, between, minLength } from '@vuelidate/validators'
-import AppInputFile from '@/components/AppInputFile.vue';
-import { computed, PropType } from 'vue';
-import { onMounted } from 'vue'
 import FileInputLogic from '@/components/FileInputLogic.vue';
-import TextValidation from '@/recycleBin/TextValidation.vue';
-import TituloComponent from '@/recycleBin/TituloComponent.vue';
-import TextComponent from '@/formComponents/TextComponent.vue';
-import TextAreaComponent from '@/formComponents/TextAreaComponent.vue';
-import NumberComponent from '@/formComponents/NumberComponent.vue';
-import SelectorComponent from '../formComponents/SelectorComponent.vue';
+import TextInput from '@/formComponents/TextInput.vue';
+import TextAreaInput from '@/formComponents/TextAreaInput.vue';
+import NumberInput from '@/formComponents/NumberInput.vue';
+import SelectorInput from '@/formComponents/SelectorInput.vue';
+import NumberUnits from '@/formComponents/NumberUnits.vue';
 export default {
 
-  name: "PageModal",
-  visibility: "invisible",
+
+  
   props: {
     open: {
       type: Boolean,
@@ -466,41 +266,38 @@ export default {
     return { v$: useVuelidate() }
   },
   components: {
-    AppInputFile,
     FileInputLogic,
-    TextValidation,
-    TituloComponent,
-    TextComponent,
-    TextAreaComponent,
-    NumberComponent,
-    SelectorComponent
+    TextInput,
+    TextAreaInput,
+    NumberInput,
+    SelectorInput,
+    NumberUnits
 },
   data() {
     return {
-    
-      fechas: "",
-      numericProgress: "(2/8)",
+  
+
       formValues: {
-        textComponent: String | Number,
-        textAreaComponent: String | Number,
-        numberComponent: Number,
-        SelectorComponent: String,
-        comida: "",
-        titulo: "",
-        descripcion: "",
-        descripcionPro: "",
-        talla: "",
-        color: "",
-        sabor: "",
-        categoria: "",
-        precio: "",
-        moneda: "",
-        cantidad: "",
-        sku: "",
-        peso: "",
-        alto: "",
-        ancho: "",
-        profundo: "",
+        // TextAreaInput: String | Number,
+        // NumberInput: Number,
+        // SelectorInput: String,
+        // NumberUnits: String,
+
+        categoria: String,
+        titulo: String,
+        descripcion: String,
+        descripcionPro: String,
+        talla: String,
+        color: String,
+        sabor: String,
+        precio: Number,
+        moneda: String,
+        cantidad: Number,
+        sku: Number,
+        peso: Number,
+        alto: Number,
+        ancho: Number,
+        profundo: Number,
         pictures: this.childPicture,
       }
     };
@@ -559,27 +356,20 @@ export default {
           integer,
           between: between(0,1000),
         },
-        // pictures: { 
-        //   required, 
-        //   minLength: minLength(1), 
-        // }
       }
     }
   },
   methods: {
-    updateTitulo (value) {
-       this.formValues.comida = value;
-      
-    },
+    
     saveImage(){
       const childPicture = document.getElementById('file-upload').value
     },
-    shouldAppendValidClass (field) {
-      return !field.$invalid && field.$model && field.$dirty
-    },
-    shouldAppendErrorClass (field) {
-      return field.$error
-    },
+    // shouldAppendValidClass (field) {
+    //   return !field.$invalid && field.$model && field.$dirty
+    // },
+    // shouldAppendErrorClass (field) {
+    //   return field.$error
+    // },
     submitForm() {
       event.preventDefault();
       this.v$.formValues.$touch()
@@ -589,11 +379,138 @@ export default {
       } else {
         console.log('Invalid form');
       }
-      
     },
   }
 }
 </script>
+
+<!--Setup script casi logrado con errores en la ultima parte-->
+
+<!-- <script setup lang="ts">
+
+import useVuelidate from '@vuelidate/core'
+import { computed } from 'vue';
+import { required, maxLength, integer, between, minLength } from '@vuelidate/validators'
+import FileInputLogic from '@/components/FileInputLogic.vue';
+import TextInput from '@/formComponents/TextInput.vue';
+import TextAreaInput from '@/formComponents/TextAreaInput.vue';
+import NumberInput from '@/formComponents/NumberInput.vue';
+import SelectorInput from '@/formComponents/SelectorInput.vue';
+import NumberUnits from '@/formComponents/NumberUnits.vue';
+
+
+const props = defineProps({
+  open: {
+      type: Boolean,
+      required: true
+  }
+})
+  
+const formValues: {
+  // TextAreaInput: String | Number,
+  // NumberInput: Number,
+  // SelectorInput: String,
+  // NumberUnits: String,
+  categoria: String,
+  titulo: String,
+  descripcion: String,
+  descripcionPro: String,
+  talla: String,
+  color: String,
+  sabor: String,
+  precio: Number,
+  moneda: String,
+  cantidad: Number,
+  sku: Number,
+  peso: Number,
+  alto: Number,
+  ancho: Number,
+  profundo: Number,
+  pictures: this.childPicture,
+}
+
+const validations = computed(() => {
+  return {
+    formValues: {
+      categoria: {
+        required,
+      },
+      titulo: {
+        required,
+        maxLength: maxLength(50),
+      },
+      descripcion: {
+        maxLength: maxLength(100),
+      },
+      descripcionPro: {
+        maxLength: maxLength(1000),
+      },
+      precio: {
+        required,
+        integer,
+        between: between(0,10000000),
+      },
+      moneda: {
+        required,
+      },
+      cantidad: {
+        required,
+        integer,
+        between: between(0,100000),
+      },
+      sku: {
+        required,
+        integer,
+        maxLength: maxLength(40),
+      },
+      peso: {
+        required,
+        integer,
+        between: between(0,1000),
+      },
+      alto: {
+        required,
+        integer,
+        between: between(0,1000),
+      },
+      ancho: {
+        required,
+        integer: integer,
+        between: between(0,1000),
+      },
+      profundo: {
+        required,
+        integer,
+        between: between(0,1000),
+      },
+    }
+  }
+},
+
+    
+function saveImage(){
+  const childPicture = document.getElementById('file-upload').value
+}
+    // shouldAppendValidClass (field) {
+    //   return !field.$invalid && field.$model && field.$dirty
+    // },
+    // shouldAppendErrorClass (field) {
+    //   return field.$error
+    // },
+
+function submitForm() {
+  event.preventDefault();
+  this.v$.formValues.$touch()
+  if(!this.v$.formValues.$invalid){
+    console.log("Form values", this.formValues);
+     this.$refs.productsListForm.reset();
+  } else {
+    console.log('Invalid form');
+  }
+}
+  
+
+</script> -->
 
 <style scoped lang="scss">
 #fileInputArea{

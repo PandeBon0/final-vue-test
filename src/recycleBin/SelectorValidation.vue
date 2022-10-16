@@ -29,7 +29,7 @@
         @blur="v$.propertyName.$touch()"
         class="border rounded border-slate-300 h-8  w-10/12 text-slate-400 mr-9 my-0.5 "
       >
-      <option value="">Seleccione {{ labelText }}</option>
+        <option value="">Seleccione {{ labelText }}</option>
         <option value="{{ option1 }}">{{ option1 }}</option>
         <option value="{{ option1 }}">{{ option2 }}</option>
         <option value="{{ option1 }}">{{ option3 }}</option>
