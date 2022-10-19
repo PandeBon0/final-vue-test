@@ -8,12 +8,10 @@
   
 </template>
 
-<script  lang="ts">
-export default {
-  name: 'App',
-  components: {
-}
-}
+<script setup lang="ts">
+
+const name = 'App'
+
 </script>
 
 <style scoped>
