@@ -1,5 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import  PageHome from '@/pages/PageHome.vue'
+import PageLogin from '@/pages/PageLogin.vue';
+import PageNotFound from '@/pages/PageNotFound.vue';
 
 
 
@@ -8,8 +10,21 @@ const routes = [
     path: '/', 
     name: 'Home',
     component: PageHome, 
-    meta: {toTop: true, smoothScroll: true},
+    // meta: {toTop: true, smoothScroll: true},
   },
+  
+{
+    path: '/login',
+    name: 'Login',
+    component: PageLogin,
+    // meta: { toTop: true, smoothScroll: true },
+},
+{
+    path: '/:pathMatch(.*)*', 
+    name: 'NotFound',
+    component: PageNotFound,
+    // redirect: '/'
+},   
    
 ]
 

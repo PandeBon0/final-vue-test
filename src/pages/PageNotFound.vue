@@ -2,8 +2,8 @@
   <div class="div-col-full text-center" >
     <h1>Not Found</h1>
     <router-link :to="{name: 'Home'}">
-      Pagina principal
-    </router-link>
+      <h2>Pagina principal</h2>
+    </router-link> 
   </div>
 </template>
 
