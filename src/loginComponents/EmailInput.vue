@@ -16,7 +16,7 @@
       @input="updateValue($event)"
     >
     <div v-if="v$.usuario.$error" class="text-red-500 italic font-thin text-xs w-3/4 ml-4 md:ml-8">
-      <p v-if="v$.usuario.required">El campo es obligatorio</p>
+      <p v-if="v$.usuario.required">Ingrese un correo válido</p>
       <p v-else-if="v$.usuario.email">Ingrese un correo válido</p>
     </div>
   </div>
