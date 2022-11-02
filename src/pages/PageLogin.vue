@@ -4,6 +4,8 @@
       <div>
       <h2 class="text-lg font-semibold mt-5 md:ml-32 sm:ml-20 ml-6" >
         Iniciar Sesión
+
+        <!-- <div><p class="text-sm">Este es el valor de auth sin hacer click: {{ store.state.auth}}</p></div> -->
       </h2>
       </div>
       <br>
@@ -24,7 +26,7 @@
             name: 'Home', 
           }" 
         >
-        <button 
+        <button  @click="login()"
           class=" border rounded-md md:ml-32 sm:ml-20 ml-6
            border-slate-300 p-2  bg-[#005CAB] w-40 text-white h-12 font-semibold" 
         >
@@ -33,7 +35,7 @@
       </router-link>
      </div>
      <div v-else>
-      <button 
+      <button
           class="font-semibold border rounded-md md:ml-32 sm:ml-20 ml-6
            border-slate-300 p-2  bg-[#92999f] w-40 text-white h-12 " 
         >
@@ -41,8 +43,6 @@
         </button>
      </div>
      <br>
-     <!-- <p>Emailvalidated: {{emailValidated}} - PasswordValidated {{passwordValidated}}</p> -->
-     <!-- <p>Are both validated {{  }}</p> -->
     </div>
   </div>
   
@@ -51,27 +51,15 @@
 
 </template>
 
- <script lang="ts">
+<script setup lang="ts">
 
 import EmailInput from '@/loginComponents/EmailInput.vue'
 import PasswordInput from '@/loginComponents/PasswordInput.vue'
-import PageHome from '@/pages/PageHome.vue'
-
-
-export default {
-  components: {
-    EmailInput,
-    PasswordInput,
-    PageHome
-  }
-}
-</script> 
-
-<script setup lang="ts">
-
 import useVuelidate from '@vuelidate/core'
 import { computed, ref } from 'vue';
-import { required, maxLength, integer, between, minLength, email } from '@vuelidate/validators'
+import { required, email } from '@vuelidate/validators'
+import router from '@/router';
+import store from '@/store'
 
 
 const emailValidated = ref('');
@@ -85,19 +73,6 @@ const validations = computed(() => {
     },
     passwordValidated: {
       required,
-      // minLength: minLength(8),  
-      // containsUppercase: function(value: string) {
-      //   return !/[A-Z]/.test(value)
-      // },
-      // containsLowercase: function(value: string) {
-      //   return !/[a-z]/.test(value)
-      // },
-      // containsNumber: function(value: string) {
-      //   return !/[0-9]/.test(value)
-      // },
-      // containsSpecial: function(value: string) {
-      //   return !/[#?!@$%^&*-]/.test(value)
-      // }
   }
    }
 });
@@ -112,10 +87,19 @@ function checkIfBothValidated (): boolean {
   return areBothValidated
 }
 
+function login () {
+  //if(!v$.value.$invalid){
+    store.dispatch('isAuth')
+    // store.dispatch('isAuth')
+    console.log('Metodo despachado, auth se cambia de valor')
+    // console.log(store.state.auth + 'desde PageLogin al dar clic')
 
+    router.push("/home")
+    // router.push({name: 'Home', path: '/home'})
+  //}
+}
 
 </script> 
-
 
 <style >
 </style>
